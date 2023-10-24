@@ -1,0 +1,222 @@
+[
+    {
+      "policeId": "01ABCD",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password1",
+      "post": "DCP",
+      "state": "Delhi",
+      "district": "New Delhi",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "02ABCD",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "password2",
+      "post": "IG",
+      "state": "Maharashtra",
+      "district": "Mumbai",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "03ABCD",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "password": "password3",
+      "post": "SP",
+      "state": "Gujarat",
+      "district": "Ahmedabad",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "04ABCD",
+      "name": "Bob Wilson",
+      "email": "bob@example.com",
+      "password": "password4",
+      "post": "ASP",
+      "state": "Karnataka",
+      "district": "Bangalore",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "05ABCD",
+      "name": "Eve Brown",
+      "email": "eve@example.com",
+      "password": "password5",
+      "post": "DSP",
+      "state": "Tamil Nadu",
+      "district": "Chennai",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "06ABCD",
+      "name": "Mark Wilson",
+      "email": "mark@example.com",
+      "password": "password6",
+      "post": "IG",
+      "state": "West Bengal",
+      "district": "Kolkata",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "07ABCD",
+      "name": "Linda Anderson",
+      "email": "linda@example.com",
+      "password": "password7",
+      "post": "ASP",
+      "state": "Rajasthan",
+      "district": "Jaipur",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "08ABCD",
+      "name": "James Carter",
+      "email": "james@example.com",
+      "password": "password8",
+      "post": "SP",
+      "state": "Madhya Pradesh",
+      "district": "Bhopal",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "09ABCD",
+      "name": "Sarah Adams",
+      "email": "sarah@example.com",
+      "password": "password9",
+      "post": "DSP",
+      "state": "Punjab",
+      "district": "Ludhiana",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "10ABCD",
+      "name": "Michael Davis",
+      "email": "michael@example.com",
+      "password": "password10",
+      "post": "IG",
+      "state": "Uttar Pradesh",
+      "district": "Lucknow",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "11ABCD",
+      "name": "Emily White",
+      "email": "emily@example.com",
+      "password": "password11",
+      "post": "DCP",
+      "state": "Kerala",
+      "district": "Kochi",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "12ABCD",
+      "name": "Daniel Brown",
+      "email": "daniel@example.com",
+      "password": "password12",
+      "post": "ASP",
+      "state": "Bihar",
+      "district": "Patna",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "13ABCD",
+      "name": "Olivia Clark",
+      "email": "olivia@example.com",
+      "password": "password13",
+      "post": "SP",
+      "state": "Assam",
+      "district": "Guwahati",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "14ABCD",
+      "name": "William Evans",
+      "email": "william@example.com",
+      "password": "password14",
+      "post": "DSP",
+      "state": "Telangana",
+      "district": "Hyderabad",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "15ABCD",
+      "name": "Sophia Thomas",
+      "email": "sophia@example.com",
+      "password": "password15",
+      "post": "IG",
+      "state": "Andhra Pradesh",
+      "district": "Visakhapatnam",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "16ABCD",
+      "name": "Noah Johnson",
+      "email": "noah@example.com",
+      "password": "password16",
+      "post": "ASP",
+      "state": "Odisha",
+      "district": "Bhubaneswar",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "17ABCD",
+      "name": "Mia Harris",
+      "email": "mia@example.com",
+      "password": "password17",
+      "post": "SP",
+      "state": "Jharkhand",
+      "district": "Ranchi",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "18ABCD",
+      "name": "Liam Wilson",
+      "email": "liam@example.com",
+      "password": "password18",
+      "post": "DSP",
+      "state": "Chhattisgarh",
+      "district": "Raipur",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "19ABCD",
+      "name": "Ava Martinez",
+      "email": "ava@example.com",
+      "password": "password19",
+      "post": "DCP",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "taluka": "all",
+      "village": "all"
+    },
+    {
+      "policeId": "20ABCD",
+      "name": "Alexander White",
+      "email": "alex@example.com",
+      "password": "password20",
+      "post": "IG",
+      "state": "Haryana",
+      "district": "Gurugram",
+      "taluka": "all",
+      "village": "all"
+    }
+  ]
