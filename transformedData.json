@@ -1,404 +1,53 @@
 [
-  {
-    "name": "Kutch District Police Headquarters",
-    "coordinates": [
-      69.6664617,
-      23.2430111
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Dumral Bazzar Police Station",
-    "coordinates": [
-      72.8643665,
-      22.6914433
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Nadiad Main Police Station",
-    "coordinates": [
-      72.8585041,
-      22.6942361
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Veraval Tower Police station",
-    "coordinates": [
-      70.3647844,
-      20.9097351
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Makarpura Road Police Station",
-    "coordinates": [
-      73.2032808,
-      22.2707302
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Mahsana District Jail",
-    "coordinates": [
-      72.3843978,
-      23.6090155
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Chowk Bazar Police Station (Furja)",
-    "coordinates": [
-      72.8194544,
-      21.1983247
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Piplod Police Chowki",
-    "coordinates": [
-      72.7803298,
-      21.1648314
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Ellisbridge Police Station",
-    "coordinates": [
-      72.5716416,
-      23.022886
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Sardarnagar Police Station",
-    "coordinates": [
-      72.620522,
-      23.0804289
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "kalupur Police Station",
-    "coordinates": [
-      72.5938493,
-      23.0280667
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      70.3785534,
-      20.9103757
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      71.0059757,
-      20.739476
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      69.6661334,
-      23.2467343
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      69.6703411,
-      23.2542578
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Karanj Police Station",
-    "coordinates": [
-      72.5820394,
-      23.0245097
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police station",
-    "coordinates": [
-      70.0665251,
-      22.4674468
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      69.6064493,
-      21.6425951
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "SOLA POLICE STATION",
-    "coordinates": [
-      72.5290719,
-      23.0869563
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Headquaters",
-    "coordinates": [
-      70.0505385,
-      22.4782767
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Kalol police station",
-    "coordinates": [
-      72.5039766,
-      23.2321535
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "BSF",
-    "coordinates": [
-      72.3802364,
-      23.4996701
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "police station",
-    "coordinates": [
-      72.3925592,
-      23.6033095
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "police parade Ground",
-    "coordinates": [
-      72.3936483,
-      23.6105725
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police head quarters ",
-    "coordinates": [
-      72.3933116,
-      23.6104715
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Mehsana city trafic police",
-    "coordinates": [
-      72.3900917,
-      23.6017456
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Sarovar Police station",
-    "coordinates": [
-      72.3962892,
-      23.6058092
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Radhanpur circle police station",
-    "coordinates": [
-      72.3816721,
-      23.6056242
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "kuvadva road police staion",
-    "coordinates": [
-      70.8353128,
-      22.3141856
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Vatva police",
-    "coordinates": [
-      72.6275,
-      22.9718545
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Odhav police station (new building)",
-    "coordinates": [
-      72.6724978,
-      23.0259396
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Digital Printer",
-    "coordinates": [
-      72.8300864,
-      21.1689912
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Hanspura/Dehgam naka police station",
-    "coordinates": [
-      72.686768,
-      23.08872
-    ],
-    "type": "Point"
-  },
-  {
-    "coordinates": [
-      72.3634999,
-      23.0724693
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "City police line &  A divison police station",
-    "coordinates": [
-      70.8358361,
-      22.8132593
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Station",
-    "coordinates": [
-      72.863415,
-      22.6757356
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Gujarat university police station",
-    "coordinates": [
-      72.5405988,
-      23.0347446
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Maganpura Police Chowki",
-    "coordinates": [
-      72.5785719,
-      23.0805194
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Saputara Police Station",
-    "coordinates": [
-      73.7519774,
-      20.5792511
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Local crime branch office",
-    "coordinates": [
-      70.4586508,
-      21.5286827
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Ranip Police Station",
-    "coordinates": [
-      72.5779962,
-      23.0806075
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Chowki",
-    "coordinates": [
-      69.7191669,
-      22.9791531
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Station, Hatkesh",
-    "coordinates": [
-      72.5530175,
-      23.0467062
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Gandevi Police Station",
-    "coordinates": [
-      73.0052069,
-      20.8138833
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Udyognagar Police Chawki",
-    "coordinates": [
-      70.050873,
-      22.4570771
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Meghpar Police Station",
-    "coordinates": [
-      69.8155437,
-      22.3487056
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police station",
-    "coordinates": [
-      72.9962453,
-      20.8113154
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Dhrol Police Station",
-    "coordinates": [
-      70.4141854,
-      22.5663614
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "B-Division",
-    "coordinates": [
-      70.4601209,
-      21.5257201
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Head Quarters",
-    "coordinates": [
-      70.4614335,
-      21.5173636
-    ],
-    "type": "Point"
-  },
-  {
-    "name": "Police Line",
-    "coordinates": [
-      70.4631409,
-      21.5139029
-    ],
-    "type": "Point"
-  }
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
 ]

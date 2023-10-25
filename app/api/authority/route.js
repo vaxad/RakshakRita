@@ -26,12 +26,15 @@ export async function PUT(req){
         const db = await connect()
         const bodyObject = await req.json()
         const authority = await Authorities.findOne({policeId:bodyObject.policeId})
+        if(authority){
         if(authority.email===bodyObject.email&&authority.password===bodyObject.password){
             const authToken = jwt.sign({authorityId: authority._id},process.env.JWT_SECRET)
             return NextResponse.json({authToken:authToken, success:true})
         }
+    }
         return NextResponse.json({message:"incorrect credentials", success:false})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({error:error})
     }
 }
@@ -53,4 +56,3 @@ export async function GET(req){
         return NextResponse.json({error:error})
     }
 }
-

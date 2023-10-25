@@ -20,7 +20,11 @@ export async function GET(req){
         //.log(obj)
         if(obj){
         const body = await Authorities.findById(obj.authorityId)
-        const stations = await Stations.find({state:body.state==="all"?{$exists:true}:body.state,district:body.district==="all"?{$exists:true}:body.district,taluka:body.taluka==="all"?{$exists:true}:body.taluka,village:body.village==="all"?{$exists:true}:body.village})
+        console.log(body)
+        let stations = await Stations.find({district:body.district==='all'?{$exists:true}:body.district})
+        // if(body.taluka!=='all'){
+        //     stations = stations.filter((station)=>station.village.includes(body.taluka)||station.taluka.includes(body.taluka))
+        // }
         return NextResponse.json({stations:stations, success:true})
         }
         return NextResponse.json({message:"authorization failed", success:false})
