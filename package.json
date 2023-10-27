@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@uiball/loaders": "^1.3.0",
     "axios": "^1.5.1",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
@@ -21,6 +22,7 @@
     "react-qr-scanner": "^1.0.0-alpha.11"
   },
   "devDependencies": {
+    "@gradio/client": "^0.6.0",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
