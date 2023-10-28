@@ -1,7 +1,7 @@
 // versi "react-qr-reader" 1.0.0. component API harus disesuaikan dengan yg baru
 "use client"
 import { useDebugValue, useEffect, useState } from "react";
-import {QrReader} from "react-qr-reader";
+// import {QrReader} from "react-qr-reader";
 // import Webcam from "react-webcam";
 
 const videoConstraints = {
@@ -87,13 +87,13 @@ const QrScan = () => {
             <option value={"user"}>Front Camera</option>
           </select>
           {/* <Webcam/> */}
-          <QrReader
+          {/* <QrReader
             facingMode={selected}
             delay={1000}
             onError={handleError}
             onScan={handleScan}
             // chooseDeviceId={()=>selected}
-            style={{ width: "300px" }}
+            style={{ width: "300px" }} */}
           />
         </>
       )}
