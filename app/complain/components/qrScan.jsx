@@ -43,15 +43,7 @@ const QrScan = () => {
         navigator.msGetUserMedia
     );
     
-    if (typeof navigator.mediaDevices.getUserMedia === 'undefined') {
-        navigator.getUserMedia({
-            audio: true
-        }, streamHandler, errorHandler);
-    } else {
-        navigator.mediaDevices.getUserMedia({
-            audio: true
-        }).then(streamHandler).catch(errorHandler);
-    }
+    
     }
   }, [])
   const [selected, setSelected] = useState("environment");
