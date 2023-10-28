@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import QrReader from 'react-qr-scanner'
 import Navbar from '../components/Navbar';
+import Link from 'next/link';
 
 export default function Location() {
   const [latitude, setLatitude] = useState(null);
@@ -97,10 +98,15 @@ export default function Location() {
         <p>Loading location...</p>
       )}
       {error && <p>Error: {error}</p>} */}
-      <h1 className=' text-2xl font-bold text-slate-700'>Scan the QR here</h1>
+      <h1 className=' text-2xl font-bold text-slate-700 flex flex-row gap-5 items-center'>Scan the QR here 
+      <span className='  text-4xl font-bold text-slate-900 flex flex-row gap-5 items-center'>OR</span>
+      <span>
+      <Link href={"/stations"} className=" px-5 py-2 rounded-xl bg-orange-500 lg:text-3xl text-xl hover:text-slate-50 hover:scale-105 font-bold transition-all">Browse Stations</Link>
+        </span></h1>
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
         {!result && typeof window !== 'undefined' && <QrReader
+          facingMode='rear'
           delay={300}
           onError={handleError}
           onScan={handleScan}

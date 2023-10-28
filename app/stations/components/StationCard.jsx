@@ -9,7 +9,7 @@ export default function StationCard({el}) {
             <div className="cardContents">
                 <div className="imageWithProgress relative">
                     <img src="/station.png" style={{width:"100%"}} alt=""/>
-                    <div className=" absolute -bottom-5 right-5 w-16 bg-slate-50 p-1 rounded-full">
+                    <div className=" absolute -bottom-5 -right-2 w-16 bg-slate-50 p-1 rounded-full">
                 <CircularProgressbar value={percentage} text={`${percentage}%`} styles={buildStyles({
                     pathColor:"#d44444",
                     textColor:"#d44444",

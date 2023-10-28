@@ -113,9 +113,12 @@ export default function Page({params:{id}}) {
         if(checkProximity()){
             alert("you need to in the 100m range of "+station?.name)
         }else { 
-          const response = await axios.post("https://rakshakrita-api.onrender.com/type",{"text":desc})
+          const response = await axios.post("https://rakshakrita-api.onrender.com/type",{"text":sub+": "+desc})
             const typeData = await response.data
             console.log(typeData)
+            const response2 = await axios.post("https://rakshakrita-api.onrender.com/issue",{"text":sub+": "+desc})
+            const issueData = await response2.data
+            console.log(issueData)
             if (!!file) {
                 try {
                     const formData = new FormData();
@@ -130,7 +133,7 @@ export default function Page({params:{id}}) {
                     if (response.statusText === "OK") {
                         console.log(response.data.url)
                         setAttatch(response.data.url)
-                        const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc, attatchment:response.data.url, ip:address?.ip, stationId:station._id, type:typeData.type}))).data
+                        const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc, attatchment:response.data.url, ip:address?.ip, stationId:station._id, type:typeData.type, issue: issueData.issue[0]}))).data
                         if(resp.message){
                             alert(resp.message)
                         }else{
@@ -144,9 +147,7 @@ export default function Page({params:{id}}) {
                   console.error('Error uploading file to Cloudinary:', error);
                 }
               }else {
-                
-            
-                const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc,subject:sub, attatchment:"", ip:address?.ip, stationId:station._id, type:typeData.type}))).data
+                const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc,subject:sub, attatchment:"", ip:address?.ip, stationId:station._id, type:typeData.type, issue: issueData.issue[0]}))).data
                 console.log(resp)
                 if(resp.message){
                   alert(resp.message)

@@ -35,7 +35,7 @@ export default function Stations() {
             </select>
         </form>
     </div>
-    <div className=" grid grid-cols-3 px-12 pb-16 gap-6 w-full">
+    <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-12 md:px-12 px-4 pb-16 gap-6 w-full">
     {stations.length===0?
     (<div className=" col-span-3 w-full min-h-[50vh]"><Loading/></div>):
     stations.map((el)=>{

@@ -13,7 +13,7 @@ export default function Home() {
                 <div>Help us make your community safer.</div>
                 <div>Share your feedback with your local police station.</div>
             </div>
-            <Link href={"/stations"} className=" px-5 py-2 rounded-xl bg-orange-500 lg:text-3xl text-xl font-bold transition-all">GET STARTED</Link>
+            <Link href={"/complain"} className=" px-5 py-2 rounded-xl bg-orange-500 lg:text-3xl text-xl hover:text-slate-50 hover:scale-105 font-bold transition-all">GET STARTED</Link>
         </div>
 
         <div className=" w-full flex justify-center items-center lg:justify-start  lg:w-3/5">
