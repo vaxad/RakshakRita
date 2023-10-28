@@ -19,8 +19,7 @@
     "react": "^18",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
-    "react-qr-code": "^2.0.12",
-    "react-qr-scanner": "^1.0.0-alpha.11"
+    "react-qr-reader": "^3.0.0-beta-1"
   },
   "devDependencies": {
     "@gradio/client": "^0.3.1",

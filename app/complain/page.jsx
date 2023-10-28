@@ -2,20 +2,23 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import QrReader from 'react-qr-scanner'
+import QrReader from "react-qr-reader";
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
+import QrScan from './components/qrScan';
 
 export default function Location() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [c1, setc1] = useState(null);
   const [c2, setc2] = useState(null);
+  
+  const [selected, setSelected] = useState("environment");
   const [error, setError] = useState(null);
   const [areClose, setAreClose] = useState(null);
   const [result, setResult] = useState(null);
   const route = useRouter();
-  const handleScan = (data) => {
+  const handleScan = async (data) => {
     if (data) {
       setResult(data);
       console.log(data)
@@ -86,6 +89,48 @@ export default function Location() {
     console.log(`Are the coordinates close? ${areClose}`);
   }
 
+  // const [cam, setcam] = useState(false)
+  // useEffect(() => {
+  //   if(window)
+  //   navigator.getUserMedia (
+  //     // constraints
+  //     {
+  //        video: true,
+  //        audio: true
+  //     },
+   
+  //     // successCallback
+  //     function(localMediaStream) {
+  //        var video = document.querySelector('video');
+  //        video.src = window?.URL?.createObjectURL(localMediaStream);
+  //        video.onloadedmetadata = function(e) {
+  //           // Do something with the video here.
+  //           setcam(true)
+  //        };
+  //     },
+   
+  //     // errorCallback
+  //     function(err) {
+  //      if(err === PERMISSION_DENIED) {
+  //        // Explain why you need permission and how to update the permission setting
+  //      }
+  //     }
+  //  );
+  // }, [])
+  useEffect(() => {
+    if(typeof(window)!=="undefined"){
+      navigator.permissions.query({ name: 'camera' })
+  .then((permissionObj) => {
+    console.log(permissionObj.state);
+    const permission = permissionObj.state;
+  })
+  .catch((error) => {
+    console.log('Got error :', error);
+  });
+    }
+  }, [])
+  
+  
   return (
     <div className=' flex w-full flex-col  home min-h-[100vh]'>
       <Navbar/>
@@ -105,14 +150,8 @@ export default function Location() {
         </span></h1>
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
-        {!result && typeof window !== 'undefined' && <QrReader
-          facingMode={"rear"}
-          delay={300}
-          onError={handleError}
-          onScan={handleScan}
-          style={{ width: '100%' }}
-        />}
-        <img src='/qrscan.png' className=' absolute h-full'></img>
+        <QrScan/>
+        {/* <img src='/qrscan.png' className=' absolute h-full'></img> */}
         </div>
         {result && <p>QR Code Data: {JSON.stringify(result)}</p>}
         <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p>
