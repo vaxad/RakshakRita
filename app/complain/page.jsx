@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import QrReader from 'react-qr-scanner'
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ export default function Location() {
   const [areClose, setAreClose] = useState(null);
   const [result, setResult] = useState(null);
   const route = useRouter();
+  const qrRef = useRef(null);
   const handleScan = (data) => {
     if (data) {
       setResult(data);
@@ -106,7 +107,14 @@ export default function Location() {
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
         {!result && typeof window !== 'undefined' && <QrReader
-          facingMode='user'
+        ref={qrRef}
+          // facingMode="environment"
+          constraints={{
+            video: {
+              facingMode: "environment"
+            }
+        }}
+        key="environment"
           delay={300}
           onError={handleError}
           onScan={handleScan}
