@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import QrReader from "react-qr-reader";
+// import QrReader from "react-qr-reader";
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
 import QrScan from './components/qrScan';
