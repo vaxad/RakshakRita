@@ -106,7 +106,7 @@ export default function Location() {
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
         {!result && typeof window !== 'undefined' && <QrReader
-          facingMode='rear'
+          facingMode={"rear"}
           delay={300}
           onError={handleError}
           onScan={handleScan}
