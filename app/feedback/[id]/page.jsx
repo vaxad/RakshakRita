@@ -2,9 +2,12 @@
 
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import "./feedback.css"
+import Navbar from "@/app/components/Navbar";
 
 export default function Page({params:{id}}) {
     const [station, setStation] = useState(null)
+    const [sub, setSub] = useState(null)
     const [desc, setDesc] = useState("")
     const [file, setFile] = useState(null);
     const [img, setimg] = useState(null)
@@ -110,6 +113,9 @@ export default function Page({params:{id}}) {
         if(checkProximity()){
             alert("you need to in the 100m range of "+station?.name)
         }else { 
+          const response = await axios.post("https://rakshakrita-api.onrender.com/type",{"text":desc})
+            const typeData = await response.data
+            console.log(typeData)
             if (!!file) {
                 try {
                     const formData = new FormData();
@@ -124,7 +130,7 @@ export default function Page({params:{id}}) {
                     if (response.statusText === "OK") {
                         console.log(response.data.url)
                         setAttatch(response.data.url)
-                        const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc, attatchment:response.data.url, ip:address?.ip, stationId:station._id}))).data
+                        const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc, attatchment:response.data.url, ip:address?.ip, stationId:station._id, type:typeData.type}))).data
                         if(resp.message){
                             alert(resp.message)
                         }else{
@@ -138,7 +144,9 @@ export default function Page({params:{id}}) {
                   console.error('Error uploading file to Cloudinary:', error);
                 }
               }else {
-                const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc, attatchment:"", ip:address?.ip, stationId:station._id}))).data
+                
+            
+                const resp = (await axios.post("/api/feedback",JSON.stringify({description:desc,subject:sub, attatchment:"", ip:address?.ip, stationId:station._id, type:typeData.type}))).data
                 console.log(resp)
                 if(resp.message){
                   alert(resp.message)
@@ -152,32 +160,39 @@ export default function Page({params:{id}}) {
       }
 
     return (
-        <div className=" flex flex-col justify-center items-center p-24">
-            <h1 className=" font-bold text-2xl">Feedback regarding {station?.name}</h1>
-            <form onSubmit={(e)=>{
-                e.preventDefault();
-                handleSubmit();
-            }} className=" flex flex-col justify-center items-center gap-4 w-full">
-                <div className=" flex flex-col w-full justify-center items-center gap-3">
-            <h2 className=" text-lg font-medium ">Feedback</h2>
-            <textarea cols={30} type="text" className="p-3 rounded-lg text-black w-full" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
-          </div>
-          <div className=" flex flex-col w-full justify-center items-center gap-3">
-            <h2 className=" text-lg font-medium ">attachments</h2>
-            {(file?.type.includes("image")) ? <img className=' py-10' src={img}></img>
+    <main className="flex flex-col w-full home min-h-[100vh] overflow-x-hidden">
+      <Navbar/>
+        <div className="formContainer py-12 w-full px-3">
+        <div className="formTitle darkColor w-full">
+            <div className="heading">
+                <h1>Submit Your Feedback</h1>
+                <p className="lightColor">This feedback is the cornerstone upon which we build a safer, more responsive, and community-centric policing system</p>
+            </div>
+            <h1 className="policeStaion">{station?.name}</h1>
+        </div>
+
+        <div className="form w-full">
+                <div className="subject w-full lg:w-2/3 transition-all">
+                    <label>Subject</label>
+                    <input placeholder="Enter the subject of your feedback" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={sub} onChange={(e)=>setSub(e.target.value)}/>
+                </div>
+                <div className="description w-full lg:w-2/3 transition-all">
+                    <label>Description</label>
+                    <textarea className="textFields text-slate-950 placeholder:text-slate-600" id="descriptionField" cols="30" rows="10" placeholder="Describe your case..."  value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
+                </div>
+        </div>
+        <div onClick={() => { imageUpload.current.click() }} className=" flex flex-row gap-4 justify-center py-6 items-center">
+            <p className=" text-xl font-semibold text-slate-950 p-5 transition-all hover:text-slate-50 cursor-pointer hover:bg-orange-400 rounded-xl">Add Attatchment</p>
+            <img width={60} height={60} src="/add-image.png" alt=""/>
+        </div>
+  <input type="file" ref={imageUpload}   className=" hidden p-3 rounded-lg text-black w-full" onChange={handleFileChange}></input>  
+        <div className=" flex w-full justify-center items-center">
+        {(file?.type.includes("image")) ? <img className=' py-10' src={img}></img>
             :(file?.type.includes("video")) ? <video className=' py-10' src={img}></video>:
             <></>}
-
-                <div onClick={() => { imageUpload.current.click() }} className=' w-11/12 py-6 md:py-12 rounded-lg cursor-pointer bg-green-500 hover:bg-green-300 flex justify-center items-center text-xl md:text-3xl transition-all font-bold'>
-                    {!file ? 'ADD IMAGE' : 'CHANGE IMAGE'}{!file && <sup>*</sup>}
-                </div>
-                {/* <input id='imageUpload' ref={imageUpload} className=' hidden' onChange={(e) => { validateFileType(e) }} type='file'></input> */}
-                
-            <input type="file" ref={imageUpload}   className=" hidden p-3 rounded-lg text-black w-full" onChange={handleFileChange}></input>
-          </div>
-          <button type="submit" className=" px-4 py-2 mx-5 font-bold bg-blue-500 rounded-lg">Submit</button>
-
-            </form>
         </div>
+        <button onClick={()=>{handleSubmit()}} className="font-bold text-2xl p-5 transition-all bg-gradient-to-tr from-[#f1d81a] to-[#ff7300] rounded-2xl text-slate-50 ">Submit</button>
+    </div>
+        </main>
     )
 }

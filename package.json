@@ -17,12 +17,13 @@
     "next": "13.5.4",
     "qrcode": "^1.5.3",
     "react": "^18",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18",
     "react-qr-code": "^2.0.12",
     "react-qr-scanner": "^1.0.0-alpha.11"
   },
   "devDependencies": {
-    "@gradio/client": "^0.6.0",
+    "@gradio/client": "^0.3.1",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",

@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import QrReader from 'react-qr-scanner'
+import Navbar from '../components/Navbar';
 
 export default function Location() {
   const [latitude, setLatitude] = useState(null);
@@ -50,7 +51,7 @@ export default function Location() {
   function areCoordinatesClose(coord1, coord2, threshold) {
     if (!coord1 || !coord2) {
       console.log("no coord")
-      return false
+      return "false"
     }
     const toRadians = (degrees) => (degrees * Math.PI) / 180;
 
@@ -72,7 +73,7 @@ export default function Location() {
 
     const distance = R * c * 1000; // Convert to meters
 
-    return distance < threshold;
+    return distance < threshold?"true":"false";
   }
 
   // Example usage:
@@ -85,26 +86,31 @@ export default function Location() {
   }
 
   return (
-    <div>
-      {latitude && longitude ? (
+    <div className=' flex w-full flex-col  home min-h-[100vh]'>
+      <Navbar/>
+      <div className=' flex flex-col justify-center items-center gap-12 text-slate-950 text-xl font-semibold py-6 px-3'>
+      {/* {latitude && longitude ? (
         <p>
           Latitude: {latitude}, Longitude: {longitude}
         </p>
       ) : (
         <p>Loading location...</p>
       )}
-      {error && <p>Error: {error}</p>}
-      <div>
+      {error && <p>Error: {error}</p>} */}
+      <h1 className=' text-2xl font-bold text-slate-700'>Scan the QR here</h1>
+      <div className=' flex w-full flex-col gap-8 justify-center items-center'>
+        <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
         {!result && typeof window !== 'undefined' && <QrReader
           delay={300}
           onError={handleError}
           onScan={handleScan}
           style={{ width: '100%' }}
         />}
+        <img src='/qrscan.png' className=' absolute h-full'></img>
+        </div>
         {result && <p>QR Code Data: {JSON.stringify(result)}</p>}
-        <p>You are close: {JSON.stringify(areClose ? areClose : "false")}</p>
-
-
+        <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p>
+      </div>
       </div>
     </div>
   );

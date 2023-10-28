@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import StationCard from "./components/StationCard";
 import Loading from "../components/Loading";
+import Navbar from "../components/Navbar";
 
 export default function Stations() {
     const [stations, setstations] = useState([])
@@ -17,33 +18,7 @@ export default function Stations() {
     
   return (
     <main className="flex flex-col w-full home min-h-[100vh] ">
-    <div className="navbar bg-opacity-60 bg-slate-950 w-full h-full">
-      <div className="head w-full">
-          <div className="logo">
-              <h1 className="txtOrange title">Rakshakરીત</h1>
-              <p className="subtitle">Your Voice, Our Commitment</p>
-          </div>
-
-          <div className="searchbar"></div>
-
-          <div className="options">
-              <div className="language txtOrange"><span>ENGLISH</span><div className="dropdown"></div></div>
-              <div className="log-sign-div">
-                  <button className="log-sign-button login bgOrange"> Login </button>
-                  <button className="log-sign-button signup bgOrange"> Signup </button>
-              </div>
-          </div>
-      </div>
-
-      <div className="navbarOptions text-slate-100">
-          <div><a href="/complain" className="navLinks">Submit a feedback</a></div>
-          <div><a href="" className="navLinks">How it works</a></div>
-          <div><Link href="/stations" className="navLinks">Police stations</Link></div>
-          <div><a href="" className="navLinks">Feedback history</a></div>
-          <div><a href="" className="navLinks">About us</a></div>
-          <div><a href="" className="navLinks">Contact us</a></div>
-      </div>
-  </div>
+    <Navbar/>
 
     <div className=" flex flex-col w-full ">
 

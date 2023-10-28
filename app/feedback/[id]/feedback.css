@@ -1,0 +1,123 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+*{
+    /* outline: solid black; */
+    margin: 0;
+}
+.txtOrange{
+    color: #FF9400;
+}
+.bgOrange{
+    background-color: #FF9400;
+    border: none;
+}
+.lightColor{
+    color: #6C727F;
+}
+.darkColor{
+    color: #42445D;
+}
+.formContainer{
+    text-align: center;
+    width: 100vw;
+}
+.formTitle{
+    margin-bottom: 4rem;
+}
+.formTitle > * {
+    margin-bottom: 1rem;
+}
+.heading > h1 {
+    font-size: 3rem;
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.textFields{
+    display: block;
+    width: 100%;
+    margin: auto;
+    font-size: 1.1rem;
+    padding: 1rem;
+    border: 2px solid #D2D5DA;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    resize: none;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    padding: 0.5rem;
+}
+.subject,.description{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+label{
+    font-size: 1.2rem;
+    position: absolute;
+    z-index: 1;
+    left: 5%;
+    top: -0.8rem;
+    padding: 3px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+}
+
+.addImage{
+    text-align: left;
+    margin-left: 25%;
+    margin-top: 1rem;
+}
+.addImage > p {
+    font-size: 1.2rem;
+}
+.addImage > img {
+    width: 5%;
+}
+
+.submitBtn{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    max-width: 160px;
+    width: 100%;
+    text-align: center;
+    padding: 0.7%;
+    border-radius: 8px;
+    letter-spacing: 0.1rem;
+}
+.submitBtn:active{
+    transform: scale(0.95);
+}
+
