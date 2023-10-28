@@ -94,7 +94,7 @@ const QrScan = () => {
             onScan={handleScan}
             // chooseDeviceId={()=>selected}
             style={{ width: "300px" }} */}
-          />
+          {/* /> */}
         </>
       )}
       {loadingScan && <p>Loading</p>}
