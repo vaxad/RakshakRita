@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import QrReader from 'react-qr-scanner'
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
+import Loading from '../components/Loading';
 
 export default function Location() {
   const [latitude, setLatitude] = useState(null);
@@ -32,23 +33,23 @@ export default function Location() {
     console.error(err);
   };
 
-  useEffect(() => {
-    if (window)
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-            setc1({ latitude: position.coords.latitude, longitude: position.coords.longitude })
-          },
-          (err) => {
-            setError(err.message);
-          }
-        );
-      } else {
-        setError('Geolocation is not supported by your browser.');
-      }
-  }, []);
+  // useEffect(() => {
+  //   if (window)
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(
+  //         (position) => {
+  //           setLatitude(position.coords.latitude);
+  //           setLongitude(position.coords.longitude);
+  //           setc1({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+  //         },
+  //         (err) => {
+  //           setError(err.message);
+  //         }
+  //       );
+  //     } else {
+  //       setError('Geolocation is not supported by your browser.');
+  //     }
+  // }, []);
 
   function areCoordinatesClose(coord1, coord2, threshold) {
     if (!coord1 || !coord2) {
@@ -100,10 +101,11 @@ export default function Location() {
       )}
       {error && <p>Error: {error}</p>} */}
       <h1 className=' text-2xl font-bold text-slate-700 flex flex-row gap-5 items-center'>Scan the QR here 
-      <span className='  text-4xl font-bold text-slate-900 flex flex-row gap-5 items-center'>OR</span>
+      {/* <span className='  text-4xl font-bold text-slate-900 flex flex-row gap-5 items-center'>OR</span>
       <span>
       <Link href={"/stations"} className=" px-5 py-2 rounded-xl bg-orange-500 lg:text-3xl text-xl hover:text-slate-50 hover:scale-105 font-bold transition-all">Browse Stations</Link>
-        </span></h1>
+        </span> */}
+        </h1>
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
         {!result && typeof window !== 'undefined' && <QrReader
@@ -122,8 +124,8 @@ export default function Location() {
         />}
         <img src='/qrscan.png' className=' absolute h-full'></img>
         </div>
-        {result && <p>QR Code Data: {JSON.stringify(result)}</p>}
-        <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p>
+        {result && <Loading/>}
+        {/* <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p> */}
       </div>
       </div>
     </div>

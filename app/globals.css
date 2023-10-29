@@ -86,9 +86,9 @@ body{
 .dropdown{
   width: 0;
   height: 0;
-  border-left: 0.8rem solid transparent;
-  border-right: 0.8rem solid transparent;
-  border-top: 1rem solid #FF9400;
+  border-left: 0.4rem solid transparent;
+  border-right: 0.4rem solid transparent;
+  border-top: 0.5rem solid #FF9400;
 }
 .options{
   display: flex;

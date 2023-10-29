@@ -6,9 +6,9 @@ export default function Home() {
     <main className="flex flex-col w-full home min-h-[100vh]">
       <Navbar/>
 
-    <div className="flex lg:flex-row flex-col justify-center items-center gap-12 w-full max-w-[100vw] text-slate-950 z-50 min-h-[80vh] h-full py-16">
+    <div className="flex lg:flex-row flex-col justify-center items-center gap-12 w-full max-w-[100vw] text-slate-950 z-20 min-h-[80vh] h-full py-16">
         <div className="flex flex-col justify-center items-center w-full lg:px-12 px-6">
-            <h1 className=" lg:text-6xl text-2xl md:text-6xl flex-wrap font-extrabold z-50">Report.Evaluate.Improve</h1>
+            <h1 className=" lg:text-6xl text-2xl md:text-6xl flex-wrap font-extrabold z-20">Report.Evaluate.Improve</h1>
             <div className="flex flex-col py-6 subtitle lg:text-2xl text-xl">
                 <div>Help us make your community safer.</div>
                 <div>Share your feedback with your local police station.</div>

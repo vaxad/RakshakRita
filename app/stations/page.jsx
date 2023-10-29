@@ -24,7 +24,7 @@ export default function Stations() {
 
         <div className="filter flex flex-row flex-nowrap text-black w-full my-6 px-12 gap-5">
             <input type="text" className=" w-full py-3 px-6 border border-slate-400 rounded-2xl" placeholder="Search a Police Station..."></input>
-        <form className=" flex flex-col justify-start max-w-fit">
+        <form className=" flex flex-col justify-start max-w-fit h-full">
             {/* <label>Filter by</label> */}
             <select>
               <option className=" text-slate-300">Filter</option>
@@ -37,7 +37,7 @@ export default function Stations() {
     </div>
     <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-12 md:px-12 px-4 pb-16 gap-6 w-full">
     {stations.length===0?
-    (<div className=" col-span-3 w-full min-h-[50vh]"><Loading/></div>):
+    (<div className=" col-span-3 w-full "><Loading/></div>):
     stations.map((el)=>{
         return(
             <StationCard key={el._id} el={el}/>

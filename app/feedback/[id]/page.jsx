@@ -4,9 +4,12 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./feedback.css"
 import Navbar from "@/app/components/Navbar";
+import { useRouter } from "next/navigation";
+import Loading from "@/app/components/Loading";
 
 export default function Page({params:{id}}) {
     const [station, setStation] = useState(null)
+    const [loading, setLoading] = useState(true)
     const [sub, setSub] = useState(null)
     const [desc, setDesc] = useState("")
     const [file, setFile] = useState(null);
@@ -16,8 +19,8 @@ export default function Page({params:{id}}) {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const cloud_name = "db670bhmc"
-
   const [address, setAddress] = useState(null);
+  const route = useRouter();
 
   useEffect(() => {
     try {
@@ -43,7 +46,8 @@ export default function Page({params:{id}}) {
         });
         const data = await res.json()
         setStation(data.station)
-        console.log(data)
+        setLoading(false)
+        // console.log(data)
     }
     useEffect(() => {
         getData()
@@ -106,6 +110,7 @@ export default function Page({params:{id}}) {
       }
 
       const handleSubmit = async() => {
+        setLoading(true)
         if(!desc){
             alert("Please enter a description")
             return
@@ -152,18 +157,21 @@ export default function Page({params:{id}}) {
                 if(resp.message){
                   alert(resp.message)
               }else{
+                setSub("")
                 setDesc("")
                 setimg(null)
                 setFile(null)
+                route.push("/stations")
               }
               }
         }
+        setLoading(false)
       }
 
     return (
     <main className="flex flex-col w-full home min-h-[100vh] overflow-x-hidden">
       <Navbar/>
-        <div className="formContainer py-12 w-full px-3">
+        {loading?<Loading/>:<div className="formContainer py-12 w-full px-3">
         <div className="formTitle darkColor w-full">
             <div className="heading">
                 <h1>Submit Your Feedback</h1>
@@ -193,7 +201,7 @@ export default function Page({params:{id}}) {
             <></>}
         </div>
         <button onClick={()=>{handleSubmit()}} className="font-bold text-2xl p-5 transition-all bg-gradient-to-tr from-[#f1d81a] to-[#ff7300] rounded-2xl text-slate-50 ">Submit</button>
-    </div>
+    </div>}
         </main>
     )
 }
