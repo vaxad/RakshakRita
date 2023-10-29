@@ -18,7 +18,7 @@ export default function StationCard({el}) {
                 </div>
                 
                 <div className="stationDetails">
-                    <div className="stationsSubtitle">{el.name}</div>
+                    <p className="stationsSubtitle font-semibold">{el.name}</p>
                     <p className="addy">ADDRESS:</p>
                     <p>{`${el.area}, ${el.district}, ${el.state}, ${el.pincode}`}</p>
                     <a target="_blank" className=" underline decoration-red-300  hover:text-black hover:decoration-red-600" href={`https://www.google.com/maps/place/${el.latitude},${el.longitude}`}>View on maps</a>
