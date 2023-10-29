@@ -48,7 +48,7 @@ export default function Navbar() {
 
             <div className="searchbar"></div>
 
-            <div className="options">
+            <div className=" flex flex-row gap-2">
             <select value={language} onChange={(e)=>{setLanguage(e.target.value);console.log(e.target.value)}} className="language txtOrange cursor-pointer  hover:text-orange-600 bg-transparent border-none ring-0 focus:border-none">
               <option value={"en"}><p>English</p></option>
               <option value={"gu"}><p>Gujarati</p></option>
@@ -82,12 +82,12 @@ export default function Navbar() {
         <div onClick={()=>{setnav(false)}} className=" absolute top-5 right-5 transition-all"><svg xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all lg:hidden block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
 <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
 </svg></div>
-            <div><Link href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
-            <div><a href="" className="navLinks transition-all">How it works</a></div>
-            <div><Link href="/stations" className="navLinks transition-all">Police stations</Link></div>
-            {/* <div><a href="" className="navLinks transition-all">Feedback history</a></div> */}
-            <div><a href="" className="navLinks transition-all">About us</a></div>
-            <div><a href="" className="navLinks transition-all">Contact us</a></div>
+            <div><Link onClick={()=>{setnav(false)}} href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
+            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">How it works</a></div>
+            <div><Link onClick={()=>{setnav(false)}} href="/stations" className="navLinks transition-all">Police stations</Link></div>
+            {/* <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</a></div> */}
+            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">About us</a></div>
+            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Contact us</a></div>
         </div>
     </div>
   )
