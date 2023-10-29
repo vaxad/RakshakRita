@@ -48,7 +48,7 @@ export default function Navbar() {
 
             <div className="searchbar"></div>
 
-            <div className=" flex flex-row gap-2">
+            <div className=" flex flex-row justify-center items-center gap-4">
             <select value={language} onChange={(e)=>{setLanguage(e.target.value);console.log(e.target.value)}} className="language txtOrange cursor-pointer  hover:text-orange-600 bg-transparent border-none ring-0 focus:border-none">
               <option value={"en"}><p>English</p></option>
               <option value={"gu"}><p>Gujarati</p></option>
