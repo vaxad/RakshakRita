@@ -17,7 +17,7 @@ export default function Stations() {
     }, [])
     
   return (
-    <main className="flex flex-col w-full home min-h-[100vh] ">
+    <main className="flex flex-col w-full home min-h-[100vh] overflow-y-scroll">
     <Navbar/>
 
     <div className=" flex flex-col w-full ">
