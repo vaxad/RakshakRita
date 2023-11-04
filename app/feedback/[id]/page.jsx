@@ -9,7 +9,7 @@ import Loading from "@/app/components/Loading";
 
 export default function Page({params:{id}}) {
     const [station, setStation] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [sub, setSub] = useState(null)
     const [desc, setDesc] = useState("")
     const [file, setFile] = useState(null);
@@ -174,7 +174,7 @@ export default function Page({params:{id}}) {
         {loading?<Loading/>:<div className="formContainer py-12 w-full px-3">
         <div className="formTitle darkColor w-full">
             <div className="heading">
-                <h1>Submit Your Feedback</h1>
+                <h1 className="text-[#262c69]">Submit Your Feedback</h1>
                 <p className="lightColor">This feedback is the cornerstone upon which we build a safer, more responsive, and community-centric policing system</p>
             </div>
             <h1 className="policeStaion">{station?.name}</h1>
@@ -182,11 +182,29 @@ export default function Page({params:{id}}) {
 
         <div className="form w-full">
                 <div className="subject w-full lg:w-2/3 transition-all">
-                    <label>Subject</label>
+                    <div className="label">Name <sub><small>{"(optional)"}</small></sub></div>
                     <input placeholder="Enter the subject of your feedback" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={sub} onChange={(e)=>setSub(e.target.value)}/>
                 </div>
+                <div className="subject w-full lg:w-2/3 transition-all">
+                    <div className="label">Phone Number <sub><small>{"(optional)"}</small></sub></div>
+                    <input placeholder="Enter the subject of your feedback" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={sub} onChange={(e)=>setSub(e.target.value)}/>
+                </div>
+                
+                <div className="text-xl text-[#42445D]">Which of these departments does your feedback concern</div>
+                <form action="">
+                  <label class="form-control">
+                    <input type="checkbox" name="checkbox" />
+                    Checkbox
+                  </label>
+
+                  <label class="form-control">
+                    <input type="checkbox" name="checkbox-checked" checked />
+                    Checkbox - checked
+                  </label>
+                </form>
+
                 <div className="description w-full lg:w-2/3 transition-all">
-                    <label>Description</label>
+                    <div className="label">Description</div>
                     <textarea className="textFields text-slate-950 placeholder:text-slate-600" id="descriptionField" cols="30" rows="10" placeholder="Describe your case..."  value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
                 </div>
         </div>
@@ -200,7 +218,7 @@ export default function Page({params:{id}}) {
             :(file?.type.includes("video")) ? <video className=' py-10' src={img}></video>:
             <></>}
         </div>
-        <button onClick={()=>{handleSubmit()}} className="font-bold text-2xl p-5 transition-all bg-gradient-to-tr from-[#f1d81a] to-[#ff7300] rounded-2xl text-slate-50 ">Submit</button>
+        <button onClick={()=>{handleSubmit()}} className="font-bold text-2xl p-5 transition-all  rounded-2xl text-slate-50 subBtn">Submit</button>
     </div>}
         </main>
     )
