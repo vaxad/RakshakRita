@@ -12,8 +12,11 @@ export default function Page({params:{id}}) {
     const [loading, setLoading] = useState(false)
     const [sub, setSub] = useState(null)
     const [desc, setDesc] = useState("")
+    const [name, setname] = useState("")
+    const [phone, setphone] = useState("")
     const [file, setFile] = useState(null);
     const [img, setimg] = useState(null)
+    const [dept,setdept] = useState([])
     const [attatch, setAttatch] = useState(null)
     const imageUpload = useRef(null);
   const [latitude, setLatitude] = useState(null);
@@ -183,24 +186,24 @@ export default function Page({params:{id}}) {
         <div className="form w-full">
                 <div className="subject w-full lg:w-2/3 transition-all">
                     <div className="label">Name <sub><small>{"(optional)"}</small></sub></div>
-                    <input placeholder="Enter the subject of your feedback" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={sub} onChange={(e)=>setSub(e.target.value)}/>
+                    <input placeholder="You can add your name" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={name} onChange={(e)=>setname(e.target.value)}/>
                 </div>
                 <div className="subject w-full lg:w-2/3 transition-all">
                     <div className="label">Phone Number <sub><small>{"(optional)"}</small></sub></div>
-                    <input placeholder="Enter the subject of your feedback" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={sub} onChange={(e)=>setSub(e.target.value)}/>
+                    <input placeholder="You can add your contact details" className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject" value={phone} onChange={(e)=>setphone(e.target.value)}/>
                 </div>
                 
-                <div className="text-xl text-[#42445D]">Which of these departments does your feedback concern</div>
-                <form action="">
-                  <label class="form-control">
-                    <input type="checkbox" name="checkbox" />
-                    Checkbox
+                <div className="text-xl text-[#42445D]">Which of these departments does your feedback concern?</div>
+                <form action="" className=" flex flex-row justify-between items-center">
+                  <label class="form-control flex flex-row lg:justify-between w-full justify-center items-center">
+                    <input type="checkbox" value={"Patrol Division"} className=" " onSelect={(e)=>setdept((prev)=>([...prev,e.target.value]))} name="checkbox1" />
+                    Patrol Division
+                    <input type="checkbox"  value={"Records Division"} className=" " onSelect={(e)=>setdept((prev)=>([...prev,e.target.value]))}  name="checkbox2" />
+                    Records Division
+                    <input type="checkbox"  value={"Prisoner Processing"} className=" " onSelect={(e)=>setdept((prev)=>([...prev,e.target.value]))}  name="checkbox3" />
+                    Prisoner Processing
                   </label>
 
-                  <label class="form-control">
-                    <input type="checkbox" name="checkbox-checked" checked />
-                    Checkbox - checked
-                  </label>
                 </form>
 
                 <div className="description w-full lg:w-2/3 transition-all">
@@ -209,7 +212,7 @@ export default function Page({params:{id}}) {
                 </div>
         </div>
         <div onClick={() => { imageUpload.current.click() }} className=" flex flex-row gap-4 justify-center py-6 items-center">
-            <p className=" text-xl font-semibold text-slate-950 p-5 transition-all hover:text-slate-50 cursor-pointer hover:bg-orange-400 rounded-xl">Add Attatchment</p>
+            <p className=" text-xl font-semibold text-slate-950 p-5 transition-all hover:text-slate-50 cursor-pointer bg-orange-400 bg-opacity-25 hover:bg-opacity-90 rounded-xl">Add Attatchment</p>
             <img width={60} height={60} src="/add-image.png" alt=""/>
         </div>
   <input type="file" ref={imageUpload}   className=" hidden p-3 rounded-lg text-black w-full" onChange={handleFileChange}></input>  

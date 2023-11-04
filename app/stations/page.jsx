@@ -8,16 +8,20 @@ import Navbar from "../components/Navbar";
 
 export default function Stations() {
     const [stations, setstations] = useState([])
+    const [showstations, setshowstations] = useState([])
+    const [search, setsearch] = useState([])
+
     useEffect(() => {
       const getData = async() => {
         const resp = (await axios.get("/api/station")).data
         setstations(resp.stations.slice(1,15))
+        setshowstations(resp.stations.slice(1,15))
       }
       getData();
     }, [])
     
   return (
-    <main className="flex flex-col w-full home min-h-[100vh] ">
+    <main className="flex flex-col w-full home min-h-[100vh] overflow-y-scroll">
     <Navbar/>
 
     <div className=" flex flex-col w-full ">
@@ -29,9 +33,9 @@ export default function Stations() {
             <select>
               <option className=" text-slate-300">Filter</option>
               <option>District</option>
-              <option>THIS</option>
-              <option>SHIT</option>
-              <option>HARD</option>
+              <option>Taluka</option>
+              <option>City</option>
+              <option>Town</option>
             </select>
         </form>
     </div>

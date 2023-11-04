@@ -7,7 +7,7 @@ export default function Loading() {
                 size={70}
                 lineWeight={5}
                 speed={1}
-                color="orange"
+                color="#262c69"
             />
         </div>
     )
