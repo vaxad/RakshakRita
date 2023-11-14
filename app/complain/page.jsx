@@ -89,7 +89,7 @@ export default function Location() {
   }
 
   return (
-    <div className=' flex w-full flex-col  home min-h-[100vh]'>
+    <div className=' flex w-full flex-col  home min-h-[100vh] overflow-y-scroll'>
       <Navbar/>
       <div className=' flex flex-col justify-center items-center gap-12 text-slate-950 text-xl font-semibold py-6 px-3'>
       {/* {latitude && longitude ? (
@@ -124,6 +124,7 @@ export default function Location() {
         />}
         <img src='/qrscan.png' className=' absolute h-full'></img>
         </div>
+        <h1 className=' text-xl text-center font-semibold text-slate-700'><span className=' text-slate-800'>Note:</span> You need to be within 100 metre radius of the police station about which you want to complain!</h1>
         {result && <Loading/>}
         {/* <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p> */}
       </div>

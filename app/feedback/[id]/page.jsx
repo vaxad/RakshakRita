@@ -284,7 +284,7 @@ const [more, setmore] = useState(false)
           <h1 className="">{station?.name}</h1>
         </div>
         <div className=" flex w-full justify-center items-center">
-          {station?.latitude && <div id="map" className=" z-10 w-2/3 rounded-xl my-8" style={{ height: "40vh" }}></div>}
+          {station?.latitude && <div id="map" className=" z-10 lg:w-2/3 w-11/12 rounded-xl my-8" style={{ height: "40vh" }}></div>}
         </div>
         <div className="form w-full">
           
