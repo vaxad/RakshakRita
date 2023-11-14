@@ -1,6 +1,6 @@
-import connect from "@/lib/db/connection"
-import Authorities from "@/lib/db/models/Authorities"
-import Forms from "@/lib/db/models/Forms"
+import connect from "../../../../lib/db/connection"
+import Authorities from "../../../../lib/db/models/Authorities"
+import Forms from "../../../../lib/db/models/Forms"
 import { NextResponse } from "next/server"
 import jwt from "jsonwebtoken"
 import { headers } from "next/headers";

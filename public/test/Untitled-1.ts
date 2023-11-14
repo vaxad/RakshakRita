@@ -3,12 +3,11 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./feedback.css"
-import Navbar from "../../components/Navbar"
+import Navbar from "@/app/components/Navbar";
 import { useRouter } from "next/navigation";
-import Loading from "../../components/Loading";
+import Loading from "@/app/components/Loading";
 import L from 'leaflet';
-// import { AudioRecorder } from 'react-audio-voice-recorder';
-import Field from "./components/Field";
+import Field from "@/app/components/Field";
 import Dictaphone from "./components/Dictaphone";
 
 export default function Page({ params: { id } }) {

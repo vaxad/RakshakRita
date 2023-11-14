@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "babel-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { set } from 'mongoose';
 
 const Dictaphone = ({setDesc}) => {
   const {
@@ -15,7 +16,7 @@ const Dictaphone = ({setDesc}) => {
   const listenContinuously = () => {
     SpeechRecognition.startListening({
       continuous: true,
-      language: lang,
+      language: 'gu-IN',
     });
   };
   

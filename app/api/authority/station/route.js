@@ -1,10 +1,10 @@
-// import clientPromise from "@/lib/mongodb";
+// import clientPromise from "../../../../lib/mongodb";
 import { NextResponse } from "next/server";
 import qrcode from 'qrcode';
 import axios from "axios";
-import connect from "@/lib/db/connection";
-import Stations from "@/lib/db/models/Stations";
-import Authorities from "@/lib/db/models/Authorities";
+import connect from "../../../../lib/db/connection";
+import Stations from "../../../../lib/db/models/Stations";
+import Authorities from "../../../../lib/db/models/Authorities";
 import { headers } from "next/headers";
 import jwt from "jsonwebtoken";
 
