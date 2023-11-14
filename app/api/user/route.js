@@ -1,5 +1,5 @@
-import connect from "@/lib/db/connection"
-import Citizen from "@/lib/db/models/Citizen"
+import connect from "../../../lib/db/connection"
+import Citizen from "../../../lib/db/models/Citizen"
 import { NextResponse } from "next/server"
 
 export async function GET(req, res) {

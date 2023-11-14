@@ -1,5 +1,5 @@
-import connect from "@/lib/db/connection"
-import Feedback from "@/lib/db/models/Feedback"
+import connect from "../../../lib/db/connection"
+import Feedback from "../../../lib/db/models/Feedback"
 import { NextResponse } from "next/server"
 
 export async function POST(req, res) {

@@ -1,22 +1,28 @@
-import connect from "../../../lib/db/connection"
-import Authorities from "../../../lib/db/models/Authorities"
+import connect from "../../../../lib/db/connection"
+import Authorities from "../../../../lib/db/models/Authorities"
+import Forms from "../../../../lib/db/models/Forms"
 import { NextResponse } from "next/server"
 import jwt from "jsonwebtoken"
 import { headers } from "next/headers";
 
 export async function POST(req){
     try {
+        const headersList = headers();
+        const token = headersList.get('authToken');
+        const obj = jwt.verify(token,process.env.JWT_SECRET)
         const db = await connect()
         const bodyObject = await req.json()
-        //.log(bodyObject)
-        const oldAuthority = await Authorities.find({policeId:bodyObject.policeId})
+
+        console.log(bodyObject.fields[0])
+        const oldAuthority = await Authorities.find({policeId:obj.authorityId})
         if(!oldAuthority){
-        const authority = await Authorities.create({name:bodyObject.name, email:bodyObject.email, password:bodyObject.password, post:bodyObject.post, state:bodyObject.state, district:bodyObject.district, taluka:bodyObject.taluka, village: bodyObject.village})
-        return NextResponse.json({authority:authority})
+        return NextResponse.json({message:"access denied"})
         }else{
-            return NextResponse.json({message:"authority already exists"})
+            const form =await Forms.create({fields:bodyObject.fields, authorityId:obj.authorityId})
+            return NextResponse.json({form:form, success:true})
         }
     } catch (error) {
+        console.log(error)
         return NextResponse.json({error:error})
     }
 }
@@ -41,17 +47,10 @@ export async function PUT(req){
 
 export async function GET(req){
     try {
-        const headersList = headers();
-        const token = headersList.get('authToken');
         //.log(token)
         const db = await connect()
-        const obj = jwt.verify(token,process.env.JWT_SECRET)
-        //.log(obj)
-        if(obj){
-        const authority = await Authorities.findById(obj.authorityId)
-            return NextResponse.json({authority:authority, success:true})
-        }
-        return NextResponse.json({message:"authorization failed", success:false})
+        const form = await Forms.find().sort({ createdAt: -1 }).limit(1)
+            return NextResponse.json({form: form[0], success:true})
     } catch (error) {
         return NextResponse.json({error:error})
     }
