@@ -6,8 +6,6 @@ const Dictaphone = ({setDesc}) => {
   const {
     transcript,
     listening,
-    interimTranscript,
-    finalTranscript,
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
@@ -19,16 +17,15 @@ const Dictaphone = ({setDesc}) => {
     });
   };
   
-  useEffect(() => {
-    if (finalTranscript !== '') {
-      console.log('Got final result:', finalTranscript);
-    }
-  }, [interimTranscript, finalTranscript]);
+  // useEffect(() => {
+  //   if (finalTranscript !== '') {
+  //     console.log('Got final result:', finalTranscript);
+  //   }
+  // }, [interimTranscript, finalTranscript]);
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
-
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser doesnt support speech recognition.</span>;
+  // }
   useEffect(() => {
     setDesc(transcript)
   }, [transcript])
