@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server"
-import {PythonShell} from 'python-shell';
-import { spawn } from "child_process";
+// import {PythonShell} from 'python-shell';
 import puppeteer from 'puppeteer';
 import nodemailer from 'nodemailer';
+import axios from 'axios';
 
-const runModel = async (file,options)=>{
-    const response = await PythonShell.run(file,options);
-    return response;
-}
+// const runModel = async (file,options)=>{
+//     const response = await PythonShell.run(file,options);
+//     return response;
+// }
 
 async function sendMail(recipientEmail, pdfBase64) {
   console.log(recipientEmail)
@@ -67,36 +67,16 @@ export async function POST(req, res) {
     
     try {
         // const response = await runModel('app/api/mail/pyfile/main.py',{})
-        const process = spawn('python', ['app/api/mail/pyfile/main.py']);
-        const response = []
-        process.stdout.on('data', (data) => {
-          response.push(data.toString())
-          // console.log(`stdout: ${response[0]}`);
-          if(response.length == 1)
-          htmlToPdf(response[0])
+        const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/mail")
+        const response = await resp.data.html
+        // const outputPath = 'output.pdf';
+        const htmlString = response.join(' ')
+        htmlToPdf(htmlString)
   .then(() => console.log('PDF generated successfully'))
   .catch(error => {console.error('Error generating PDF:', error); return NextResponse.json({success: false, error: error.message});})
     // console.log(response)
-        });
-
-      
-        process.stderr.on('data', (data) => {
-          console.error(`stderr: ${data}`);
-          return NextResponse.json({success: false, error: data})
-        });
-      
-        process.on('close', (code) => {
-          console.log(`child process exited with code ${code}`);
-          return NextResponse.json({success: true})
-        });
-        // const outputPath = 'output.pdf';
-  //       const htmlString = response.join(' ')
-  //       htmlToPdf(htmlString)
-  // .then(() => console.log('PDF generated successfully'))
-  // .catch(error => {console.error('Error generating PDF:', error); return NextResponse.json({success: false, error: error.message});})
-  //   // console.log(response)
-  return NextResponse.json({success: true})
-
+        
+    return NextResponse.json({success: true})
     } catch (err) {
         console.log(err)
         return NextResponse.json({success: false, error: err.message})
