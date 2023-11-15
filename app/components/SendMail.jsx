@@ -8,13 +8,19 @@ export default function SendMail() {
     useEffect(() => {
         const sendMail = async () => {
             const sendRes = await axios.put("/api/mail")
-            if (!sendRes.data.send) {
+            if (sendRes.data.send) {
                 console.log("Mail sending")
                 const htmlData = (await axios.post("https://rakshakrita-api-v2.onrender.com/mail")).data
                 const html = htmlData.html.join(" ")
+                // const html = "<html></html>"
                 // console.log(html)
-                const resp = (await axios.post("/api/mail", JSON.stringify({ html: html }))).data
-                console.log(resp)
+                const resp = (await fetch("https://rakshakrita-api.onrender.com/mail", { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ html: html })
+                 }))
+
+                console.log( await resp.json())
             } else {
                 console.log("not sending")
             }

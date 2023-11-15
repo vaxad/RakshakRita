@@ -91,8 +91,8 @@ export async function PUT(req, res) {
     const db = await connect()
       const reports = await Report.find()
       const report = reports[0]
-      // if(report.createdAt.getMonth()!==(new Date(Date.now())).getMonth()){
-      if(report.createdAt.getHours()!==(new Date(Date.now())).getHours()){
+      if(report.createdAt.getMonth()!==(new Date(Date.now())).getMonth()){
+      // if(report.createdAt.getHours()!==(new Date(Date.now())).getHours()){
         report.createdAt = Date.now()
         await report.save()
         return NextResponse.json({send: true})
