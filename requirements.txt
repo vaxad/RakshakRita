@@ -3,5 +3,4 @@ seaborn
 pandas
 networkx
 requests
-pdfkit
-# wkhtmltopdf
+pdfkits
