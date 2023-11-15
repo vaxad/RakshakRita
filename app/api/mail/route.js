@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import {PythonShell} from 'python-shell';
+import { spawn } from "child_process";
 import puppeteer from 'puppeteer';
 import nodemailer from 'nodemailer';
 
@@ -65,15 +66,37 @@ async function htmlToPdf(htmlString) {
 export async function POST(req, res) {
     
     try {
-        const response = await runModel('app/api/mail/pyfile/main.py',{})
-        // const outputPath = 'output.pdf';
-        const htmlString = response.join(' ')
-        htmlToPdf(htmlString)
+        // const response = await runModel('app/api/mail/pyfile/main.py',{})
+        const process = spawn('python', ['app/api/mail/pyfile/main.py']);
+        const response = []
+        process.stdout.on('data', (data) => {
+          response.push(data.toString())
+          // console.log(`stdout: ${response[0]}`);
+          if(response.length == 1)
+          htmlToPdf(response[0])
   .then(() => console.log('PDF generated successfully'))
   .catch(error => {console.error('Error generating PDF:', error); return NextResponse.json({success: false, error: error.message});})
     // console.log(response)
-        
-    return NextResponse.json({success: true})
+        });
+
+      
+        process.stderr.on('data', (data) => {
+          console.error(`stderr: ${data}`);
+          return NextResponse.json({success: false, error: data})
+        });
+      
+        process.on('close', (code) => {
+          console.log(`child process exited with code ${code}`);
+          return NextResponse.json({success: true})
+        });
+        // const outputPath = 'output.pdf';
+  //       const htmlString = response.join(' ')
+  //       htmlToPdf(htmlString)
+  // .then(() => console.log('PDF generated successfully'))
+  // .catch(error => {console.error('Error generating PDF:', error); return NextResponse.json({success: false, error: error.message});})
+  //   // console.log(response)
+  return NextResponse.json({success: true})
+
     } catch (err) {
         console.log(err)
         return NextResponse.json({success: false, error: err.message})
