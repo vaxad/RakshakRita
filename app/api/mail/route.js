@@ -2,7 +2,8 @@ import { NextResponse } from "next/server"
 // import {PythonShell} from 'python-shell';
 import puppeteer from 'puppeteer';
 import nodemailer from 'nodemailer';
-import axios from 'axios';
+import Report from "../../../lib/db/models/Reports";
+import connect from "../../../lib/db/connection"
 
 // const runModel = async (file,options)=>{
 //     const response = await PythonShell.run(file,options);
@@ -62,22 +63,18 @@ async function htmlToPdf(htmlString) {
     await sendMail(recipientEmail, pdfBase64)
   }
 
-  async function mail(){
-    console.log("working")
-    const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/mail")
-    const response = await resp.data.html
-    console.log("working")
-    // const outputPath = 'output.pdf';
-    const htmlString = response.join(' ')
-    console.log(htmlString)
-    htmlToPdf(htmlString)
-  }
+  // async function mail(){
+  //   htmlToPdf(htmlString)
+  // }
   
 export async function POST(req, res) {
     
     try {
         // const response = await runModel('app/api/mail/pyfile/main.py',{})
-        mail()
+        const bodyObject = await req.json()
+        const htmlString = bodyObject.html
+        // console.log(htmlString)
+        htmlToPdf(htmlString)
         return NextResponse.json({success: true})
         
     // console.log(response)
@@ -86,4 +83,25 @@ export async function POST(req, res) {
         console.log(err)
         return NextResponse.json({success: false, error: err.message})
     }
+}
+
+export async function PUT(req, res) {
+    
+  try {
+    const db = await connect()
+      const reports = await Report.find()
+      const report = reports[0]
+      // if(report.createdAt.getMonth()!==(new Date(Date.now())).getMonth()){
+      if(report.createdAt.getHours()!==(new Date(Date.now())).getHours()){
+        report.createdAt = Date.now()
+        await report.save()
+        return NextResponse.json({send: true})
+      }else{
+        return NextResponse.json({send: false})
+      }
+    
+  } catch (err) {
+      console.log(err)
+      return NextResponse.json({success: false, error: err.message})
+  }
 }
