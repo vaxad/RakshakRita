@@ -115,6 +115,8 @@ styleTag = """
             text-align: center;
             /*background: linear-gradient(120deg,#ffb78b,#ff6000 100%) no-repeat;*/
             background-color: white;
+            width: 100vw;
+            
             color: #42445D;
         }
 
@@ -127,7 +129,6 @@ styleTag = """
         h1 {
             font-size: 2.6rem;
             padding-top: 1rem;
-            margin-bottom: 2rem;
         }
         h2 {
             font-size: 2rem;
@@ -152,17 +153,17 @@ styleTag = """
         
         
         .graphContainer:nth-child(even) {
+            padding: 0 40px;
             text-align: end;
         }
         .graphContainer:nth-child(odd) {
             text-align: start;
-            padding: 0 0;
+            padding: 0 40px;
         }
         img{
              mix-blend-mode: multiply; 
             border-radius: 5px;
             max-width: 100%;
-            height: 650px;
             /*box-shadow: 0 0 10px black;*/
             margin-top: 1rem;
         }
@@ -199,37 +200,37 @@ html_template = f"""
             <div class="graphContainer">
                 <h3>Issue Bar Graph</h3>
                 <p>Bar Graph showing the count of various issues</p>
-                <img src="{count_plot_base64}" alt="Issue Bar Graph">
+                <img style="height:530px" src="{count_plot_base64}" alt="Issue Bar Graph">
             </div>
             
-            <div class="graphContainer">
+            <div style="padding-top: 25px;" class="graphContainer">
                 <h3>Performance Trend</h3>
                 <p>Line plot showing the trend of performance over time</p>
-                <img src="{line_plot_base64}" alt="Performance Trend">
+                <img style="height:450px;" src="{line_plot_base64}" alt="Performance Trend">
             </div>
             
             <div class="graphContainer">
                 <h3>Issue Pie Chart</h3>
                 <p>Pie Chart illustrating different issues</p>
-                <img style="height:800px;" src="{pie_chart_base64}" alt="Issue Pie Chart">
+                <img style="height:400px;" src="{pie_chart_base64}" alt="Issue Pie Chart">
             </div>
             
-            <div class="graphContainer">
+            <div style="padding-top: 30px;" class="graphContainer">
                 <h3>Simple Heat Map</h3>
                 <p>Heat map showing direct relation between columns</p>
-                <img style="height:900px;" src="{heatmap_base64}" alt="Simple Heat Map">
+                <img style="height:400px;" src="{heatmap_base64}" alt="Simple Heat Map">
             </div>
             
             <div class="graphContainer">
                 <h3>Complex Heat Map</h3>
                 <p>Heat map showing indirect relation between columns</p>
-                <img style="height:800px;" src="{complex_heatmap_base64}" alt="Complex Heat Map">
+                <img style="height:400px;" src="{complex_heatmap_base64}" alt="Complex Heat Map">
             </div>
             
-            <div class="graphContainer">
+            <div style="padding-top: 150px;" class="graphContainer">
                 <h3>Network Graph</h3>
                 <p>Correlation between issue and type illustrated</p>
-                <img style="height:800px;" src="{network_plot_base64}" alt="Network Graph">
+                <img style="max-height:800px;" src="{network_plot_base64}" alt="Network Graph">
             </div>
         </div>
         </th>
@@ -240,49 +241,4 @@ html_template = f"""
 </html>
 """
 
-import pdfkit
-
-pdf_file_path = "report.pdf"
-import os
-print("Current working directory:", os.getcwd())
-path_wkhtmltopdf = f"{os.getcwd()}\\lib\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
-config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-
-
-pdf_content = pdfkit.from_string(html_template, False,configuration=config, options={'page-size':'A3'})
-
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-
-# Email configuration
-sender_email = "testvaxad@gmail.com"
-receiver_email = "varadprabhu111@gmail.com"
-subject = "Subject of the email"
-body = "Body of the email"
-
-# Set up the MIME object
-message = MIMEMultipart()
-message["From"] = sender_email
-message["To"] = receiver_email
-message["Subject"] = subject
-
-# Attach the body of the email
-message.attach(MIMEText(body, "plain"))
-pdf_attachment = MIMEApplication(pdf_content, _subtype="pdf")
-pdf_attachment.add_header("Content-Disposition", "attachment", filename="report.pdf")
-message.attach(pdf_attachment)
-
-# Connect to the SMTP server (in this case, Gmail's SMTP server)
-with smtplib.SMTP("smtp.gmail.com", 587) as server:
-    # Start the TLS connection
-    server.starttls()
-
-    # Login to your email account
-    server.login(sender_email, "atxb zxxo tbvs sbwp")
-
-    # Send the email
-    server.sendmail(sender_email, receiver_email, message.as_string())
-
-print("Email sent successfully.")
+print(html_template)
