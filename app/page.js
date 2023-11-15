@@ -22,6 +22,7 @@ export default function Home() {
             </ul>
     </div >
       <Navbar/>
+      {/* <SendMail/> */}
       <div className=" flex flex-col ">
     <div className="flex lg:flex-row flex-col justify-center items-center gap-12 w-full max-w-[100vw] text-slate-950 z-20  h-full py-16">
         <div className="flex flex-col justify-center items-center w-full px-2 py-2">
