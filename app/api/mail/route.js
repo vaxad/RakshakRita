@@ -62,21 +62,26 @@ async function htmlToPdf(htmlString) {
     await sendMail(recipientEmail, pdfBase64)
   }
 
+  async function mail(){
+    console.log("working")
+    const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/mail")
+    const response = await resp.data.html
+    console.log("working")
+    // const outputPath = 'output.pdf';
+    const htmlString = response.join(' ')
+    console.log(htmlString)
+    htmlToPdf(htmlString)
+  }
   
 export async function POST(req, res) {
     
     try {
         // const response = await runModel('app/api/mail/pyfile/main.py',{})
-        const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/mail")
-        const response = await resp.data.html
-        // const outputPath = 'output.pdf';
-        const htmlString = response.join(' ')
-        htmlToPdf(htmlString)
-  .then(() => console.log('PDF generated successfully'))
-  .catch(error => {console.error('Error generating PDF:', error); return NextResponse.json({success: false, error: error.message});})
-    // console.log(response)
+        mail()
+        return NextResponse.json({success: true})
         
-    return NextResponse.json({success: true})
+    // console.log(response)
+      
     } catch (err) {
         console.log(err)
         return NextResponse.json({success: false, error: err.message})
