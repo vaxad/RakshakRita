@@ -4,4 +4,4 @@ pandas
 networkx
 requests
 pdfkit
-wkhtmltopdf
+# wkhtmltopdf
