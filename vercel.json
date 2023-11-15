@@ -1,0 +1,13 @@
+{
+    "builds": [
+      {
+        "src": "app/api/mail/pyfile/*.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "app/**/*.js",
+        "use": "@vercel/node"
+      }
+    ]
+  }
+  
