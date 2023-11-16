@@ -7,15 +7,15 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 export default function Percent({id}) {
     const [data, setdata] = useState(null)
     const [percent, setpercent] = useState(0)
-    console.log(id)
+    // console.log(id)
     let p=0,n=0,neu=0;
     useEffect(() => {
       const getData = async () => {
         const resp = (await axios.post(`/api/authority/feedback`, JSON.stringify({stationId:id}))).data
-        console.log(resp)
+        // console.log(resp)
         const result = resp.feedbacks;
         result.forEach(element => {
-            console.log(element)
+            // console.log(element)
             if(element.type.includes("Positive")){
                 p++;
             }else if(element.type.includes("Negative")){

@@ -10,6 +10,7 @@ export default function Stations() {
   const [stations, setstations] = useState([])
   const [showstations, setshowstations] = useState([])
   const [search, setsearch] = useState([])
+  const [heatmap, setheatmap] = useState([])
 
   const setMap = (stations) => {
     var container = L.DomUtil.get('map');
@@ -23,7 +24,7 @@ export default function Stations() {
     var map = L.map('map').setView([stations[0].latitude, stations[0].longitude], 50);
     // Create an array to store the markers
     var markers = [];
-
+    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors',
 }).addTo(map);
@@ -47,7 +48,19 @@ export default function Stations() {
     const latitude = 21.170240     //temp
     const longitude = 72.831062    //temp
     var marker = L.marker([latitude, longitude], { icon: customIcon2 }).addTo(map).bindPopup("You are here");
-
+    var heat = L.heatLayer(heatmap, {
+      minOpacity: 0.5,
+      radius: 50,
+      blur: 30,
+      gradient: {
+          0: '#ED16B1',
+          0.1: '#9916EE',
+          0.2: '#1D2FF1',
+          0.4: '#00BC5C',
+          0.6: '#FDD42E',
+          0.8: '#DE1213',
+          1: "#9F0132"
+      }}).addTo(map);
     // Create a feature group from the array of markers
     var markerGroup = L.featureGroup(markers);
 
@@ -65,7 +78,7 @@ export default function Stations() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log(position)
+            // console.log(position)
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
             // return ({ latitude: position.coords.latitude, longitude: position.coords.longitude })
@@ -86,15 +99,32 @@ export default function Stations() {
       // setshowstations(resp.stations.slice(1, 15))
       // setMap(resp.stations.slice(1, 100))
       const filteredStations = resp.stations.filter((el) => checkProximity({latitude2: el.latitude, longitude2: el.longitude}))
-
       setstations(filteredStations)
       setshowstations(filteredStations)
-      setMap(filteredStations)
+      const resp2 = (await axios.post("https://rakshakrita-api-v2.onrender.com/heatmap")).data
+      // setheatmap(JSON.parse(resp2.heatmapData))
+      const arr =[]
+      for(const el of JSON.parse(resp2.heatmapData)){
+        const element = []
+        const res = (await axios.get(`/api/station/${el.stationId}`)).data
+        element.push(parseFloat(res.station.latitude))
+        element.push(parseFloat(res.station.longitude))
+        element.push(el.Negative)
+        arr.push(element)
+      }
+      setheatmap(arr)
+      // console.log(arr)
     }
     if(latitude && longitude)
     getData();
     getUserLocation();
   }, [latitude])
+
+  useEffect(() => {
+    if(heatmap.length > 0 && stations.length > 0) {
+      setMap(stations)
+    }
+  },[heatmap,stations])
 
 
 
@@ -129,7 +159,7 @@ export default function Stations() {
   }
 
   const checkProximity = ({latitude2, longitude2}) => {
-    console.log(latitude2, longitude2, latitude, longitude)
+    // console.log(latitude2, longitude2, latitude, longitude)
     if(!latitude2 || !longitude2){
       getUserLocation()
 
@@ -167,9 +197,9 @@ export default function Stations() {
           </form>
         </div>
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-12 md:px-12 px-4 pb-16 gap-6 w-full">
-        { <div id="map" className=" z-10 col-span-3 rounded-xl my-8" style={{ height: "40vh" }}></div>}
+        { <div id="map" className={` ${heatmap.length>0&&stations.length>0?" ":" hidden"} z-10 col-span-3 rounded-xl my-8`} style={{ height: "40vh" }}></div>}
           {stations.length === 0 ?
-            (<div className=" col-span-3 w-full "><Loading /></div>) :
+            (<div className=" col-span-3 w-full max-h-[50vh] "><Loading /></div>) :
               stations.map((el) => {
                 return (
                   <StationCard key={el._id} el={el} />
