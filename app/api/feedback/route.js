@@ -7,13 +7,13 @@ export async function POST(req, res) {
         const db = await connect()
         const bodyObject = await req.json()
         let ctr = false
-        // const oldFeedBacks = await Feedback.find({ id: bodyObject.id, stationId: bodyObject.stationId })
-        // if (oldFeedBacks)
-        //     oldFeedBacks.forEach(feedback => {
-        //         if (feedback.createdAt.getTime() + 86400000 < Date.now()) { // this should be feedback+24hours>date.now
-        //             ctr = true;
-        //         }
-        //     })
+        const oldFeedBacks = await Feedback.find({ id: bodyObject.id, stationId: bodyObject.stationId })
+        if (oldFeedBacks)
+            oldFeedBacks.forEach(feedback => {
+                if (feedback.createdAt.getTime() + 86400000 < Date.now()) { // this should be feedback+24hours<date.now
+                    ctr = true;
+                }
+            })
         if (ctr) {
             return NextResponse.json({ message: "you can only give one feedback for one police station per day" })
         } else {
