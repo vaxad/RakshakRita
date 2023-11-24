@@ -337,12 +337,12 @@ const [more, setmore] = useState(false)
             : (file?.type.includes("video")) ? <video className=' py-10' src={img}></video> :
               <></>}
         </div>
-        <div className=" flex justify-between w-2/3 items-center gap-8 flex-row">
-          <div onClick={() => { imageUpload.current.click() }} className=" hover:scale-90 w-fit flex flex-row gap-4 justify-center my-6 items-center text-xl font-semibold text-slate-950 py-2 px-4 transition-all cursor-pointer bg-slate-100 border-2 border-orange-600 hover:border-slate-100 hover:bg-orange-600 rounded-xl">
+        <div className=" flex flex-col justify-center lg:justify-between w-2/3 items-center gap-3 lg:gap-8 lg:flex-row">
+          <div onClick={() => { imageUpload.current.click() }} className=" hover:scale-90 w-fit flex flex-row gap-4 justify-center my-6 items-center text-lg lg:text-xl font-semibold text-slate-950 py-2 px-4 transition-all cursor-pointer bg-slate-100 border-2 border-orange-600 hover:border-slate-100 hover:bg-orange-600 rounded-xl">
             <p className=" ">Add Attatchment</p>
-            <img width={40} height={40} src="/add-image.png" alt="" />
+            <img className=" lg:scale-100 scale-60" width={40} height={40} src="/add-image.png" alt="" />
           </div>
-          <button onClick={() => { handleSubmit() }} className="font-bold text-2xl py-2 px-4 transition-all text-slate-950  bg-slate-100 border-2 border-green-600 hover:border-slate-100 hover:bg-green-600 rounded-xl scale-110 hover:scale-95 ">Submit</button>
+          <button onClick={() => { handleSubmit() }} className="font-bold text-lg lg:text-xl py-2 px-4 transition-all text-slate-950  bg-slate-100 border-2 border-green-600 hover:border-slate-100 hover:bg-green-600 rounded-xl scale-110 hover:scale-95 ">Submit</button>
         </div>
       </div>}
     </main>

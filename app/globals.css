@@ -19,6 +19,7 @@
   }
 }
 
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -39,8 +40,7 @@ body{
   /* align-items: center; */
   width: 100%;
   height: 100%;
-  background: rgb(255,183,139);
-background: linear-gradient(167deg, rgba(255,183,139,1) 0%, rgba(255,96,0,1) 81%);
+  background: linear-gradient(167deg, rgba(255,183,139,1) 0%, rgba(255,96,0,1) 81%);
 }
 
 .txtOrange{
@@ -84,6 +84,7 @@ background: linear-gradient(167deg, rgba(255,183,139,1) 0%, rgba(255,96,0,1) 81%
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
+  outline: none;
 }
 .dropdown{
   width: 0;
@@ -208,8 +209,11 @@ button:hover{
   flex-direction: column;
   gap: 5px;
 }
+.stationDetails p:first-child {
+  font-size: 1.2rem;
+}
 .feedbackBtn{
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #FFFFFF;
   padding: 0.7rem 1.5rem;
   border-radius: 10px;
