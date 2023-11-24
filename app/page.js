@@ -6,7 +6,7 @@ import Blob2 from "./components/Blob2";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full home min-h-[100vh] overflow-y-scroll ">
+    <main className="flex flex-col w-full home min-h-[100vh] h-full  overflow-y-scroll ">
       <div className="area z-10" >
             <ul className="circles">
                     <li></li>
@@ -23,7 +23,7 @@ export default function Home() {
     </div >
       <Navbar/>
       {/* <SendMail/> */}
-      <div className=" flex flex-col ">
+      <div className=" flex flex-col justify-center items-center h-full ">
     <div className="flex lg:flex-row flex-col justify-center items-center gap-12 w-full max-w-[100vw] text-slate-950 z-20  h-full py-16">
         <div className="flex flex-col justify-center items-center w-full px-2 py-2">
           <div className=" flex flex-col justify-center items-center lg:px-12 px-3 lg:py-12 py-2 border-2 border-[#454545] rounded-2xl">

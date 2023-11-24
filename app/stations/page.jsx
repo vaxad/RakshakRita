@@ -20,7 +20,7 @@ export default function Stations() {
       container._leaflet_id = null;
 
     }
-    console.log("hello")
+    // console.log("hello")
     var map = L.map('map').setView([stations[0].latitude, stations[0].longitude], 50);
     // Create an array to store the markers
     var markers = [];
@@ -95,10 +95,8 @@ export default function Stations() {
   useEffect(() => {
     const getData = async () => {
       const resp = (await axios.get("/api/station")).data
-      // setstations(resp.stations.slice(1, 15))
-      // setshowstations(resp.stations.slice(1, 15))
-      // setMap(resp.stations.slice(1, 100))
-      const filteredStations = resp.stations.filter((el) => checkProximity({latitude2: el.latitude, longitude2: el.longitude}))
+      // const filteredStations = resp.stations.filter((el) => checkProximity({latitude2: el.latitude, longitude2: el.longitude}))   //using proximity
+      const filteredStations = resp.stations.sort((a,b) => distanceOf({latitude2: a.latitude, longitude2: a.longitude}) - distanceOf({latitude2: b.latitude, longitude2: b.longitude})).slice(0,12)   //using distance
       setstations(filteredStations)
       setshowstations(filteredStations)
       const resp2 = (await axios.post("https://rakshakrita-api-v2.onrender.com/heatmap")).data
@@ -127,6 +125,33 @@ export default function Stations() {
   },[heatmap,stations])
 
 
+  function distBetween(coord1, coord2) {
+    if (!coord1 || !coord2) {
+      console.log("no coord")
+      return false
+    }
+    const toRadians = (degrees) => (degrees * Math.PI) / 180;
+
+    const R = 6371; // Earth's radius in kilometers
+
+    const lat1 = toRadians(coord1.latitude);
+    const lon1 = toRadians(coord1.longitude);
+    const lat2 = toRadians(coord2.latitude);
+    const lon2 = toRadians(coord2.longitude);
+
+    const dLat = lat2 - lat1;
+    const dLon = lon2 - lon1;
+
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const distance = R * c * 1000; // Convert to meters
+
+    return distance;
+  }
 
 
 
@@ -156,6 +181,22 @@ export default function Stations() {
     const distance = R * c * 1000; // Convert to meters
 
     return distance < threshold;
+  }
+
+  const distanceOf = ({latitude2, longitude2}) => {
+    // console.log(latitude2, longitude2, latitude, longitude)
+    if(!latitude2 || !longitude2){
+      getUserLocation()
+
+    }else{
+    const c1 = { latitude: parseFloat(latitude2), longitude: parseFloat(longitude2) }
+    const latitude = 21.170240     //temp
+    const longitude = 72.831062    //temp
+    const c2 = { latitude: latitude, longitude: longitude }
+    if (!c2.latitude || !c2.longitude)
+      return false
+    return distBetween(c1, c2)
+    }
   }
 
   const checkProximity = ({latitude2, longitude2}) => {

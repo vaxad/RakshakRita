@@ -22,7 +22,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <SendMail/>
-        {children}</body>
+        {children}
+        </body>
     </html>
   )
 }
