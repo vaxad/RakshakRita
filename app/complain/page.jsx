@@ -89,7 +89,7 @@ export default function Location() {
   }
 
   return (
-    <div className=' flex w-full flex-col  home min-h-[100vh]'>
+    <div className=' flex w-full flex-col  home min-h-[100vh] overflow-y-scroll'>
       <Navbar/>
       <div className=' flex flex-col justify-center items-center gap-12 text-slate-950 text-xl font-semibold py-6 px-3'>
       {/* {latitude && longitude ? (

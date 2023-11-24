@@ -11,6 +11,7 @@ export default function Page({params:{id}}) {
     const [station, setStation] = useState(null)
     const [loading, setLoading] = useState(false)
     const [sub, setSub] = useState(null)
+    const [rating,setRating]=useState(1);
     const [desc, setDesc] = useState("")
     const [name, setname] = useState("")
     const [phone, setphone] = useState("")
@@ -203,8 +204,13 @@ export default function Page({params:{id}}) {
                     <input type="checkbox"  value={"Prisoner Processing"} className=" " onSelect={(e)=>setdept((prev)=>([...prev,e.target.value]))}  name="checkbox3" />
                     Prisoner Processing
                   </label>
-
                 </form>
+
+                <div className="text-xl text-[#42445D]">On a scale of 1 to 10, how satisfied are you with your interaction with the police?</div>
+                <div className="sliderContainer">
+                  <input type="range" min={1} max={10} value={rating} onChange={(e)=>{setRating(e.target.value)}} className="slider"/>
+                  <h1 className="ratingDisplay">{rating}</h1>
+                </div>
 
                 <div className="description w-full lg:w-2/3 transition-all">
                     <div className="label">Description</div>
