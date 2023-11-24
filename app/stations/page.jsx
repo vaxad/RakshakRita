@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import StationCard from "./components/StationCard";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
+import stns from "./components/stns.json"
 
 export default function Stations() {
   const [stations, setstations] = useState([])
@@ -57,8 +58,8 @@ export default function Stations() {
     //.log(heatmapData)
     var heat = L.heatLayer(heatmapData, {
       minOpacity: 0.3,
-      radius: 50,
-      blur: 30,
+      radius: 30,
+      blur: 20,
       gradient: {
           0: '#ED16B1',
           0.1: '#9916EE',
@@ -101,27 +102,29 @@ export default function Stations() {
 
   useEffect(() => {
     const getData = async () => {
-      const resp = (await axios.get("/api/station")).data
+      // const resp = (await axios.get("/api/station")).data
       // const filteredStations = resp.stations.filter((el) => checkProximity({latitude2: el.latitude, longitude2: el.longitude}))   //using proximity
-      const filteredStations = resp.stations.sort((a,b) => distanceOf({latitude2: a.latitude, longitude2: a.longitude}) - distanceOf({latitude2: b.latitude, longitude2: b.longitude})).slice(0,12)   //using distance
+      const filteredStations = stns.sort((a,b) => distanceOf({latitude2: a.latitude, longitude2: a.longitude}) - distanceOf({latitude2: b.latitude, longitude2: b.longitude})).slice(0,12)   //using distance
       setstations(filteredStations)
       setshowstations(filteredStations)
       const heatmapres = (await axios.get("/api/heatmap")).data
       setheatmap(heatmapres.heatmapData)
       const resp2 = (await axios.post("https://rakshakrita-api-v2.onrender.com/heatmap")).data
-      //.log(resp2)
+      console.log(resp2)
       // setheatmap(JSON.parse(resp2.heatmapData))
       const arr =[]
       //.log((JSON.parse(resp2.heatmapData)).length)
       for(const el of JSON.parse(resp2.heatmapData)){
         const element = []
-        const res = (await axios.get(`/api/station/${el.stationId}`)).data
-        // //.log(res)
-        if(res.station){
-        element.push(parseFloat(res.station.latitude))
-        element.push(parseFloat(res.station.longitude))
+        const res = stns.filter(stn=>stn._id===el.stationId)[0]
+        console.log(res)
+        if(res){
+        element.push(parseFloat(res.latitude))
+        element.push(parseFloat(res.longitude))
         element.push(el.Negative)
+        if(heatmapres.heatmapData.filter(el=>el.latitude===res.latitude&&el.longitude===res.longitude && el.intensity === el.Negative).length===0){
         arr.push(element)
+        }
         }
       }
       const resp3 = await fetch("/api/heatmap",{
@@ -234,6 +237,8 @@ export default function Stations() {
     }
   }
 
+  const [searchTerm, setSearchTerm] = useState("")
+
 
 
   return (
@@ -243,23 +248,28 @@ export default function Stations() {
       <div className=" flex flex-col w-full ">
 
         <div className="filter flex flex-row flex-nowrap text-black w-full my-6 px-12 gap-5">
-          <input type="text" className=" w-full py-3 px-6 border border-slate-400 rounded-2xl" placeholder="Search a Police Station..."></input>
-          <form className=" flex flex-col justify-start max-w-fit h-full">
-            {/* <label>Filter by</label> */}
-            <select>
+          <input type="text" value={searchTerm} onChange={(e)=>{
+            setSearchTerm(e.target.value)
+            const temp = stations
+            const filteredStations = temp.filter((el) => el.name.toLowerCase().includes(e.target.value.toLowerCase()))
+            setshowstations(filteredStations)
+          }}  className=" outline-none w-full py-3 px-6 border border-slate-400 rounded-2xl" placeholder="Search a Police Station..."></input>
+          {/* <form className=" flex flex-col justify-start max-w-fit h-full">
+            <label>Filter by</label>
+            <select className=" outline-none">
               <option className=" text-slate-300">Filter</option>
               <option>District</option>
               <option>Taluka</option>
               <option>City</option>
               <option>Town</option>
             </select>
-          </form>
+          </form> */}
         </div>
-        <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-12 md:px-12 px-4 pb-16 gap-6 w-full">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:px-24 md:px-24 px-4 pb-16 gap-6 w-full">
         { <div id="map" className={` ${heatmap.length>0&&stations.length>0?" ":" hidden"} z-10 col-span-3 rounded-xl my-8`} style={{ height: "40vh" }}></div>}
-          {stations.length === 0 ?
+          {showstations.length === 0 ?
             (<div className=" col-span-3 w-full max-h-[50vh] "><Loading /></div>) :
-              stations.map((el) => {
+              showstations.map((el) => {
                 return (
                   <StationCard key={el._id} el={el} />
                 )
