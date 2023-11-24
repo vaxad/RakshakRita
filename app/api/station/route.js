@@ -4,6 +4,7 @@ import qrcode from 'qrcode';
 import axios from "axios";
 import connect from "../../../lib/db/connection";
 import Stations from "../../../lib/db/models/Stations";
+import Heatmaps from "../../../lib/db/models/Heatmap";
 
 export async function POST(req) {
     try {
@@ -60,3 +61,6 @@ export async function GET(req){
         return NextResponse.json({error:error})
     }
 }
+
+
+

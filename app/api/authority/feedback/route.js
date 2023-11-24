@@ -55,7 +55,18 @@ export async function GET(req,res) {
     try {
         const db = await connect()
             const feedbacks  = await Feedback.find();
-            return NextResponse.json({ feedbacks: feedbacks })
+            const desiredOrder = ["_id","description","issue","id","type","stationId","createdAt","__v","attachment"]
+            const transformedFeedbacks = feedbacks.map(feedback => {
+                const sortedDoc = {};
+                desiredOrder.forEach(key => {
+                  if (feedback[key] !== undefined) {
+                    sortedDoc[key] = feedback[key];
+                  }
+                });
+                return sortedDoc;
+              });
+            
+            return NextResponse.json({ feedbacks: transformedFeedbacks })
     } catch (err) {
         console.log(err)
         return NextResponse.json(err.message)

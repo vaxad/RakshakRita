@@ -4,6 +4,8 @@ import Station from "../../../../lib/db/models/Stations"
 import { NextResponse } from "next/server"
 import fs from 'fs'
 import unreviewedStns from "./unreviewdStns.json"
+import heatmapData from "./heatmapData.json"
+import Heatmap from "../../../../lib/db/models/Heatmap"
 
 export async function POST(req, res) {
     try {
@@ -13,16 +15,21 @@ export async function POST(req, res) {
         let allStns = new Set()
         if (oldStations){
              for( const Station of oldStations) {
-                allStns.add(Station._id)
+                allStns.add(Station._id.toString())
             }
         }
+        let reviewed = new Set()
         const feedbacks = await Feedback.find()
         if (feedbacks){
             for( const feedback of feedbacks){
-                allStns.delete(feedback.stationId)
+                reviewed.add(feedback.stationId.toString())
             }
         }
-        let unreviewedStnsArr = [...allStns]
+        let arr1=[...allStns]
+        let arr2=[...reviewed]
+        console.log(allStns.size)
+        console.log(reviewed.size)
+        let unreviewedStnsArr = arr1.filter(item=>!arr2.includes(item))
         console.log(unreviewedStnsArr.length)
         let jsonString = JSON.stringify(unreviewedStnsArr, null, 2); // The third argument (2) is for indentation
 
@@ -84,23 +91,9 @@ function getRandomDate(startDate, endDate) {
 export async function PUT(req, res) {
     try {
         const db = await connect()
-        const updateStations = []
-        let ctr = 0;
-        for (const id of stationIds) {
-            const Stations = await Station.find({ stationId: id })
-            for (const Station of Stations) {
-                const startDate = new Date('2023-09-27');
-                const endDate = new Date('2023-10-16');
-                const randomDate = getRandomDate(startDate, endDate);
-                Station.createdAt = randomDate
-                const updatedStation = await Station.save()
-                ctr++;
-                console.log(ctr+", "+updatedStation._id)
-
-            }
-        }
-        // await Station.deleteMany({_id:{$in:deleteStations}})
-        // await Station.updateMany({_id:{$in:updateStations}},{$rename:{"attatchment":"attachment"}})
+        // const body = await req.json()
+        // const feedbacks = await Feedback.find()
+        
         return NextResponse.json({ success: true })
 
     } catch (err) {
