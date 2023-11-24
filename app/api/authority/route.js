@@ -1,5 +1,5 @@
-import connect from "@/lib/db/connection"
-import Authorities from "@/lib/db/models/Authorities"
+import connect from "../../../lib/db/connection"
+import Authorities from "../../../lib/db/models/Authorities"
 import { NextResponse } from "next/server"
 import jwt from "jsonwebtoken"
 import { headers } from "next/headers";

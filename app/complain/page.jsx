@@ -124,6 +124,7 @@ export default function Location() {
         />}
         <img src='/qrscan.png' className=' absolute h-full'></img>
         </div>
+        <h1 className=' text-xl text-center font-semibold text-slate-700'><span className=' text-slate-800'>Note:</span> You need to be within 100 metre radius of the police station about which you want to complain!</h1>
         {result && <Loading/>}
         {/* <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p> */}
       </div>

@@ -1,5 +1,5 @@
 "use client"
-import store from '@/lib/zustand';
+import store from '../../lib/zustand';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import translate from "translate";
