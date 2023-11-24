@@ -5,7 +5,7 @@ import Percent from "./Percent";
 export default function StationCard({ el }) {
 
     return (
-        <div className="stationCard  lg:col-span-1 md:col-span-1 col-span-3 w-full">
+        <div className="stationCard  lg:col-span-1 md:col-span-2 col-span-3 w-full">
             <div className="cardContents">
                 <div className="imageWithProgress relative">
                     <img src="/station.png" style={{ width: "100%" }} alt="" />
