@@ -1,5 +1,7 @@
 "use client"
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import "../globals.css"
+import Navbar from '../components/Navbar'
 
 export default function Page() {
   const [questions, setQuestions] = useState([{type: 'Short Answer', question: '', options:[]}])
@@ -26,6 +28,7 @@ export default function Page() {
     console.log(el)
     return(
     <div className=' flex flex-col w-full px-8 gap-5 text-slate-950'>
+      <Navbar/>
         <h1 className=' text-2xl'>Type</h1>
         <select defaultValue={el.type} onChange={(e)=>{
           setQuestions((prevQuestions) => {

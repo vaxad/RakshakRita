@@ -77,11 +77,10 @@ export default function Navbar() {
 
         <div className="flex-row justify-around items-center  hidden text-slate-100 ">
             <div><Link href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
-            <div><a href="" className="navLinks transition-all">How it works</a></div>
-            <div><Link href="/stations" className="navLinks transition-all">Police stations</Link></div>
-            {/* <div><a href="" className="navLinks transition-all">Feedback history</a></div> */}
-            <div><a href="" className="navLinks transition-all">About us</a></div>
-            <div><a href="" className="navLinks transition-all">Contact us</a></div>
+            <div><Link href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
+            <div><Link href="/working" className="navLinks transition-all">How it works</Link></div>
+            <div><Link href="/about" className="navLinks transition-all">About us</Link></div>
+            {/* <div><Link href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
         </div>
         
         <div className={`flex-col justify-center gap-12 bg-[#454545] min-h-[100vh] fixed  top-0 right-0 ${nav?" translate-y-0":" -translate-y-full"} transition-all items-center lg:hidden flex w-full text-slate-100 z-50 `} style={{transitionDuration:"1000ms", transitionDelay:"200ms"}}>
@@ -89,11 +88,11 @@ export default function Navbar() {
 <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
 </svg></div>
             <div><Link onClick={()=>{setnav(false)}} href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
-            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">How it works</a></div>
-            <div><Link onClick={()=>{setnav(false)}} href="/stations" className="navLinks transition-all">Police stations</Link></div>
-            {/* <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</a></div> */}
-            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">About us</a></div>
-            <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Contact us</a></div>
+            <div><Link onClick={()=>{setnav(false)}} href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
+            <div><Link onClick={()=>{setnav(false)}} href="/working" className="navLinks transition-all">How it works</Link></div>
+            {/* <div><Link onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</Link></div> */}
+            <div><Link onClick={()=>{setnav(false)}} href="/about" className="navLinks transition-all">About us</Link></div>
+            {/* <div><Link onClick={()=>{setnav(false)}} href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
         </div>
 
         <div className={`flex-col justify-center gap-12 bg-[#454545] min-h-[100vh] fixed top-0 right-0 ${nav2?" translate-x-0":" translate-x-full"} transition-all items-center hidden lg:flex w-fit px-24 text-slate-100 z-40 `} style={{transitionDuration:"1000ms", transitionDelay:"200ms"}}>
@@ -101,11 +100,11 @@ export default function Navbar() {
 <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
 </svg></div>
             <div><Link onClick={()=>{setnav2(false)}} href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
-            <div><a onClick={()=>{setnav2(false)}} href="" className="navLinks transition-all">How it works</a></div>
-            <div><Link onClick={()=>{setnav2(false)}} href="/stations" className="navLinks transition-all">Police stations</Link></div>
-            {/* <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</a></div> */}
-            <div><a onClick={()=>{setnav2(false)}} href="" className="navLinks transition-all">About us</a></div>
-            <div><a onClick={()=>{setnav2(false)}} href="/contact" className="navLinks transition-all">Contact us</a></div>
+            <div><Link onClick={()=>{setnav2(false)}} href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
+            <div><Link onClick={()=>{setnav2(false)}} href="/working" className="navLinks transition-all">How it works</Link></div>
+            {/* <div><Link onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</Link></div> */}
+            <div><Link onClick={()=>{setnav2(false)}} href="/about" className="navLinks transition-all">About us</Link></div>
+            {/* <div><Link onClick={()=>{setnav2(false)}} href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
         </div>
     </div>
   )

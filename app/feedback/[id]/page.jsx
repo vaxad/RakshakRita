@@ -4,12 +4,15 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./feedback.css"
 import Navbar from "../../components/Navbar"
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Loading from "../../components/Loading";
 import L from 'leaflet';
 // import { AudioRecorder } from 'react-audio-voice-recorder';
 import Field from "./components/Field";
 import Dictaphone from "./components/Dictaphone";
+// import translate from "translate";
+// const { translate } = require('free-translate');
+// import translate from "translate-google"
 
 export default function Page({ params: { id } }) {
   const [station, setStation] = useState(null)
@@ -29,6 +32,8 @@ export default function Page({ params: { id } }) {
   const [address, setAddress] = useState(null);
   const route = useRouter();
   const [extra, setextra] = useState(null)
+
+  const router = useRouter()
 
   useEffect(() => {
     try {
@@ -70,19 +75,25 @@ export default function Page({ params: { id } }) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            // 23.133735, 72.632947
+            // setLatitude(position.coords.latitude);
+            // setLongitude(position.coords.longitude);
+            setLatitude(23.133735);
+            setLongitude(72.632947);
             // return ({ latitude: position.coords.latitude, longitude: position.coords.longitude })
           },
           (err) => {
             alert(err.message);
+            router.push("/")
           }
         );
       } else {
         alert('Geolocation is not supported by your browser.');
+        router.push("/")
       }
   }
 
+  const [lang, setlang] = useState("en")
   function areCoordinatesClose(coord1, coord2, threshold) {
     if (!coord1 || !coord2) {
       console.log("no coord")
@@ -112,9 +123,9 @@ export default function Page({ params: { id } }) {
   }
 
   const checkProximity = () => {
-    const c1 = { latitude: station.latitudes, longitude: station.longitudes }
+    const c1 = { latitude: station.latitude, longitude: station.longitude }
     // const latitude = 21.170240     //temp
-    // const longitude = 72.831062    //temp
+    // const longitude = 72.831062    //temp 
     const c2 = { latitude: latitude, longitude: longitude }
     if (!c2.latitude || !c2.longitude)
       return false
@@ -122,21 +133,38 @@ export default function Page({ params: { id } }) {
     return areCoordinatesClose(c1, c2, threshold)
   }
 
+  useEffect(() => {
+    if(station)
+    if(!checkProximity())
+    alert("Please be in 100m range of police station")
+  }, [desc])
+  
   const handleSubmit = async () => {
     setLoading(true)
     if (!desc) {
       alert("Please enter a description")
       return
     }
-    if (checkProximity()) {
+    if (!checkProximity()) {
       alert("you need to in the 100m range of " + station?.name)
+      router.push("/stations")
+      return
     } else {
-      const response = await axios.post("https://rakshakrita-api.onrender.com/type", { "text": sub + ": " + desc })
-      const typeData = await response.data
-      console.log(typeData)
-      const response2 = await axios.post("https://rakshakrita-api.onrender.com/issue", { "text": sub + ": " + desc })
-      const issueData = await response2.data
-      console.log(issueData)
+      let translatedDesc = desc
+    // const translatedDesc = await translate(desc, { from: lang, to: 'en' })
+  //   translate('I speak Chinese!', {from: 'en', to: 'zh-cn'}).then(res => {
+  //     console.log(res)
+  //     translatedDesc = res
+  // }).catch(err => {
+  //     console.error(err)
+  // })
+    console.log(translatedDesc)
+      // const response = await axios.post("https://rakshakrita-api.onrender.com/type", { "text": sub + ": " + desc })
+      // const typeData = await response.data
+      // console.log(typeData)
+      // const response2 = await axios.post("https://rakshakrita-api.onrender.com/issue", { "text": sub + ": " + desc })
+      // const issueData = await response2.data
+      // console.log(issueData)
       if (!!file) {
         try {
           const formData = new FormData();
@@ -149,33 +177,67 @@ export default function Page({ params: { id } }) {
           console.log(response)
           //.log(response.statusText);
           if (response.statusText === "OK") {
-            console.log(response.data.url)
-            setAttatch(response.data.url)
-            const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, attatchment: response.data.url, ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
-            if (resp.message) {
-              alert(resp.message)
-            } else {
-              setDesc("")
-              setimg(null)
-              setFile(null)
+            // console.log(response.data.url)
+            // setAttatch(response.data.url)
+            // const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, attatchment: response.data.url, ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
+            // if (resp.message) {
+            //   alert(resp.message)
+            // } else {
+            //   setDesc("")
+            //   setimg(null)
+            //   setFile(null)
+            // }
+            // console.log(resp)
+            let savedId = localStorage.getItem("id")
+            if(!savedId){
+              const idData = (await axios.get("/api/user")).data
+              savedId = idData.user._id
             }
-            console.log(resp)
+            console.log(JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
+            // const resp = await axios.post("http://localhost:5000/feedback", JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
+            //https://rakshakrita-api-v2.onrender.com/feedback
+            const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/feedback", JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
+            alert("Your feedback has been submitted")
+            router.push("/stations")
+            return
           }
         } catch (error) {
           console.error('Error uploading file to Cloudinary:', error);
         }
       } else {
-        const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, subject: sub, attatchment: "", ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
-        console.log(resp)
-        if (resp.message) {
-          alert(resp.message)
-        } else {
-          setSub("")
-          setDesc("")
-          setimg(null)
-          setFile(null)
-          route.push("/stations")
-        }
+        // const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, subject: sub, attatchment: "", ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
+        // console.log(resp)
+        // if (resp.message) {
+        //   alert(resp.message)
+        // } else {
+        //   setSub("")
+        //   setDesc("")
+        //   setimg(null)
+        //   setFile(null)
+        //   route.push("/stations")
+        // }
+        let savedId = localStorage.getItem("id")
+            if(!savedId){
+              const idData = (await axios.get("/api/user")).data
+              savedId = idData.user._id
+            }
+            console.log(JSON.stringify({ description: translatedDesc, attachment: "", id: savedId, stationId: station._id, from:lang}))
+            // const resp =  fetch("http://localhost:5000/feedback", {
+            //   method: "POST",
+            //   headers :{
+            //     "Content-Type": "application/json"
+            //   },
+            //   body: JSON.stringify({ description: translatedDesc?translatedDesc:desc, attachment: "", id: savedId, stationId: station._id,from:lang})
+            // })
+            const resp =  fetch("https://rakshakrita-api-v2.onrender.com/feedback", {
+              method: "POST",
+              headers :{
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ description: translatedDesc?translatedDesc:desc, attachment: "", id: savedId, stationId: station._id,from:lang})
+            })
+            alert("Your feedback has been submitted")
+            route.push("/stations")
       }
     }
     setLoading(false)
@@ -288,7 +350,7 @@ const [more, setmore] = useState(false)
         </div>
         <div className="form w-full">
           
-    <Dictaphone setDesc={setDesc}/>
+    <Dictaphone setDesc={setDesc} setLang={setlang}/>
         <div className="description w-full lg:w-2/3 transition-all">
             <div className="label">Description</div>
             <textarea className="textFields text-slate-950 placeholder:text-slate-600" id="descriptionField" cols="30" rows="10" placeholder="Describe your case by typing or use speech recognition" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
@@ -342,7 +404,7 @@ const [more, setmore] = useState(false)
             <p className=" ">Add Attatchment</p>
             <img className=" lg:scale-100 scale-60" width={40} height={40} src="/add-image.png" alt="" />
           </div>
-          <button onClick={() => { handleSubmit() }} className="font-bold text-lg lg:text-xl py-2 px-4 transition-all text-slate-950  bg-slate-100 border-2 border-green-600 hover:border-slate-100 hover:bg-green-600 rounded-xl scale-110 hover:scale-95 ">Submit</button>
+          <button onClick={(e) => { e.preventDefault(); handleSubmit() }} className="font-bold text-lg lg:text-xl py-2 px-4 transition-all text-slate-950  bg-slate-100 border-2 border-green-600 hover:border-slate-100 hover:bg-green-600 rounded-xl scale-110 hover:scale-95 ">Submit</button>
         </div>
       </div>}
     </main>

@@ -1,16 +1,16 @@
 
 export default function Field({field}) {
-  return field.questionType === "short answer" ? (
+  return field.questionType === "Short answer" ? (
     <div className="subject w-full lg:w-2/3 transition-all">
             <div className="label">{field.question} <sub><small>{"(optional)"}</small></sub></div>
             <input placeholder="Write your answer here..." className="textFields text-slate-950 placeholder:text-slate-600" type="text" id="subject"  />
           </div>
-  ):field.questionType === "brief answer"?(
+  ):field.questionType === "Long answer"?(
     <div className="description w-full lg:w-2/3 transition-all">
             <div className="label">{field.question}</div>
             <textarea className="textFields text-slate-950 placeholder:text-slate-600" id="descriptionField" cols="30" rows="10" placeholder="Describe your case..." ></textarea>
           </div>
-  ):field.questionType === "multiple choice"?(
+  ):field.questionType === "MCQ"?(
     <div className="text-xl text-[#42445D] flex flex-col gap-3 w-full">
             <h1>{field.question}</h1>
             <form action="" className=" flex flex-row justify-evenly px-24 items-center w-full gap-4 text-2xl font-semibold">

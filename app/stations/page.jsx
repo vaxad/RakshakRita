@@ -6,6 +6,7 @@ import StationCard from "./components/StationCard";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import stns from "./components/stns.json"
+import { redirect, useRouter } from "next/navigation";
 
 export default function Stations() {
   const [stations, setstations] = useState([])
@@ -56,6 +57,7 @@ export default function Stations() {
     // Convert array of objects to array of arrays
     let heatmapData = heatmap.map(obj => keys.map(key => obj[key]));
     //.log(heatmapData)
+    try{
     var heat = L.heatLayer(heatmapData, {
       minOpacity: 0.3,
       radius: 30,
@@ -74,9 +76,14 @@ export default function Stations() {
 
     // Fit the map to the bounds of the marker group
     map.fitBounds(markerGroup.getBounds());
+    }catch(e){
+      //.log(e)
+    }
 
   }
 
+
+  const router = useRouter()
 
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
@@ -93,10 +100,12 @@ export default function Stations() {
           },
           (err) => {
             alert(err.message);
+            router.push("/")
           }
         );
       } else {
         alert('Geolocation is not supported by your browser.');
+        router.push("/")
       }
   }
 

@@ -13,8 +13,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  background: linear-gradient(167deg, rgba(255,183,139,1) 0%, rgba(255,96,0,1) 81%);
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
 }
@@ -22,12 +21,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
+  background: linear-gradient(167deg, rgba(255,183,139,1) 0%, rgba(255,96,0,1) 81%);
 }
 *{
   /* outline: solid black; */
@@ -244,7 +239,6 @@ body {
   width: 100%;
   height: 100%;
   position: fixed;
-  background-color: #34495e;
 }
 .content {
   /* position: absolute;
@@ -627,4 +621,23 @@ body {
         border-radius: 50%;
     }
 
+}
+
+.hiwP {
+  /* text-shadow: 0 0 2px rgba(255,255,255,0.5); */
+  font-weight: bold;
+}
+
+#hiwHeading path {
+  animation: anim 2s linear;
+}
+
+
+@keyframes anim {
+  0% {
+    stroke-dasharray: 0% 100%;
+  }
+  100% {
+    stroke-dasharray: 100% 0%;
+  }
 }
