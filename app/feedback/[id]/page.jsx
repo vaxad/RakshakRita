@@ -113,8 +113,8 @@ export default function Page({ params: { id } }) {
 
   const checkProximity = () => {
     const c1 = { latitude: station.latitudes, longitude: station.longitudes }
-    const latitude = 21.170240     //temp
-    const longitude = 72.831062    //temp
+    // const latitude = 21.170240     //temp
+    // const longitude = 72.831062    //temp
     const c2 = { latitude: latitude, longitude: longitude }
     if (!c2.latitude || !c2.longitude)
       return false
@@ -190,8 +190,8 @@ export default function Page({ params: { id } }) {
     }
     console.log("hello")
     const start = [parseFloat(station.latitude), parseFloat(station.longitude)]
-    const latitude = 21.170240     //temp
-    const longitude = 72.831062    //temp
+    // const latitude = 21.170240     //temp
+    // const longitude = 72.831062    //temp
     const end = [parseFloat(latitude), parseFloat(longitude)]
     var map = L.map('map').setView(start, 50);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

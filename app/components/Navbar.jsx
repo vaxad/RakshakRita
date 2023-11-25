@@ -105,7 +105,7 @@ export default function Navbar() {
             <div><Link onClick={()=>{setnav2(false)}} href="/stations" className="navLinks transition-all">Police stations</Link></div>
             {/* <div><a onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</a></div> */}
             <div><a onClick={()=>{setnav2(false)}} href="" className="navLinks transition-all">About us</a></div>
-            <div><a onClick={()=>{setnav2(false)}} href="" className="navLinks transition-all">Contact us</a></div>
+            <div><a onClick={()=>{setnav2(false)}} href="/contact" className="navLinks transition-all">Contact us</a></div>
         </div>
     </div>
   )

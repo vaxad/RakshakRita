@@ -46,8 +46,8 @@ export default function Stations() {
       iconAnchor: [16, 32], // set the anchor point
       popupAnchor: [0, -32], // set the popup anchor
     });
-    const latitude = 21.170240     //temp
-    const longitude = 72.831062    //temp
+    // const latitude = 21.170240     //temp
+    // const longitude = 72.831062    //temp
     var marker = L.marker([latitude, longitude], { icon: customIcon2 }).addTo(map).bindPopup("You are here");
       
     // Extract keys from the first object to determine the order
@@ -211,8 +211,8 @@ export default function Stations() {
 
     }else{
     const c1 = { latitude: parseFloat(latitude2), longitude: parseFloat(longitude2) }
-    const latitude = 21.170240     //temp
-    const longitude = 72.831062    //temp
+    // const latitude = 21.170240     //temp
+    // const longitude = 72.831062    //temp
     const c2 = { latitude: latitude, longitude: longitude }
     if (!c2.latitude || !c2.longitude)
       return false
@@ -227,8 +227,8 @@ export default function Stations() {
 
     }else{
     const c1 = { latitude: parseFloat(latitude2), longitude: parseFloat(longitude2) }
-    const latitude = 21.170240     //temp
-    const longitude = 72.831062    //temp
+    // const latitude = 21.170240     //temp
+    // const longitude = 72.831062    //temp
     const c2 = { latitude: latitude, longitude: longitude }
     if (!c2.latitude || !c2.longitude)
       return false
