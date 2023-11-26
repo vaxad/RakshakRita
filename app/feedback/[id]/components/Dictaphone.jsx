@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "babel-polyfill";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-const Dictaphone = ({setDesc}) => {
+const Dictaphone = ({setDesc,setLang}) => {
   const {
     transcript,
     listening,
@@ -29,24 +29,30 @@ const Dictaphone = ({setDesc}) => {
   useEffect(() => {
     setDesc(transcript)
   }, [transcript])
+ 
   
   const [use, setuse] = useState(false)
   const [lang, setlang] = useState(false)
+
+   
+  useEffect(() => {
+    setLang(lang)
+  },[lang])
   return !use?(
     !lang?(<button onClick={()=>{
-        setlang("hi-IN")
+        setlang("hi")
     }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Use speech recognition</button>)
     :( <div className=' flex flex-row gap-2 w-full justify-center items-center'>
         <button onClick={()=>{
-            setlang("hi-IN")
+            setlang("hi")
             setuse(true)
         }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Hindi</button>
         <button onClick={()=>{
-            setlang("gu-IN")
+            setlang("gu")
             setuse(true)
         }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Gujarati</button>
         <button onClick={()=>{
-            setlang("en-IN")
+            setlang("en")
             setuse(true)
         }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>English</button>
     </div>)

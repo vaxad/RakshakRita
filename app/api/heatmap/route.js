@@ -31,7 +31,7 @@ export async function PUT(req, res) {
         const db = await connect()
         const body = await req.json()
         for (const item of body.heatmapData) {
-            console.log(item)
+            // console.log(item)
             const hm = await Heatmap.findOne({latitude:item[0],longitude:item[1]})
             hm.intensity = item[2]
             await hm.save()

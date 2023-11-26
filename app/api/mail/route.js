@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 // import {PythonShell} from 'python-shell';
-import puppeteer from 'puppeteer';
+// import puppeteer from 'puppeteer';
 import nodemailer from 'nodemailer';
 import Report from "../../../lib/db/models/Reports";
 import connect from "../../../lib/db/connection"
@@ -45,23 +45,23 @@ async function sendMail(recipientEmail, pdfBase64) {
   });
 }
 
-async function htmlToPdf(htmlString) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+// async function htmlToPdf(htmlString) {
+//     const browser = await puppeteer.launch();
+//     const page = await browser.newPage();
   
-    // Set the content of the page with your HTML string
-    await page.setContent(htmlString, { waitUntil: 'networkidle2' });
+//     // Set the content of the page with your HTML string
+//     await page.setContent(htmlString, { waitUntil: 'networkidle2' });
   
-    // Generate PDF from the page
-    // await page.pdf({ path: outputPath, format: 'A4' });
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+//     // Generate PDF from the page
+//     // await page.pdf({ path: outputPath, format: 'A4' });
+//     const pdfBuffer = await page.pdf({ format: 'A4' });
   
-    await browser.close();
-    const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
-  // Set up the recipient email address
-   const recipientEmail = "varadprabhu111@gmail.com"
-    await sendMail(recipientEmail, pdfBase64)
-  }
+//     await browser.close();
+//     const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
+//   // Set up the recipient email address
+//    const recipientEmail = "varadprabhu111@gmail.com"
+//     await sendMail(recipientEmail, pdfBase64)
+//   }
 
   // async function mail(){
   //   htmlToPdf(htmlString)
