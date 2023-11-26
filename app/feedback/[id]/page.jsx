@@ -196,7 +196,13 @@ export default function Page({ params: { id } }) {
             console.log(JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
             // const resp = await axios.post("http://localhost:5000/feedback", JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
             //https://rakshakrita-api-v2.onrender.com/feedback
-            const resp = await axios.post("https://rakshakrita-api-v2.onrender.com/feedback", JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
+            const resp = fetch("https://rakshakrita-api-v2.onrender.com/feedback", {
+              method: "POST",
+              headers :{
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ description: translatedDesc?translatedDesc:desc, attachment: response.data.url, id: savedId, stationId: station._id,from:lang})
+            })
             alert("Your feedback has been submitted")
             router.push("/stations")
             return
