@@ -94,8 +94,10 @@ export default function Stations() {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             // //.log(position)
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
+            // setLatitude(position.coords.latitude);
+            // setLongitude(position.coords.longitude);
+            setLatitude(23.133735);
+            setLongitude(72.632947);
             // return ({ latitude: position.coords.latitude, longitude: position.coords.longitude })
           },
           (err) => {
