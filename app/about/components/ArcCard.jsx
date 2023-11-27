@@ -24,7 +24,7 @@ export const ArcCard = ({ name, title, url, college, img }) => {
                     ev.currentTarget.style.setProperty("--x", `${xPercentage * 100}%`);
                     ev.currentTarget.style.setProperty("--y", `${yPercentage * 100}%`);
                 }}
-                className="group relative grid w-full lg:grid-rows-[300px_120px_40px] md:grid-rows-[260px_120px_40px] grid-rows-[260px_120px_40px] rounded-md bg-[#FFFEEC] p-4 text-[#3e77b6] transition-transform ease-out hover:[transform:rotateX(var(--x-rotation))_rotateY(var(--y-rotation))_scale(1.06)]"
+                className="group relative flex flex-col gap-2 flex-grow w-full  rounded-md bg-[#FFFEEC] p-4 text-[#3e77b6] transition-transform ease-out hover:[transform:rotateX(var(--x-rotation))_rotateY(var(--y-rotation))_scale(1.06)]"
             >
                 {/* <figure className="rounded-md mix-blend-multiply [background-image:radial-gradient(at_70%_40%,transparent_30%,currentColor_80%),url(/noise.svg)]" /> */}
                 <div className=' w-full h-full'><img className='[perspective:1000px] hover:shadow-xl shadow-slate-700 transition-all  w-full rounded-md mix-blend-multiply object-fill aspect-square' src={img}></img></div>
