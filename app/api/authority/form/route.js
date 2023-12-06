@@ -47,7 +47,6 @@ export async function PUT(req){
 
 export async function GET(req){
     try {
-        //.log(token)
         const db = await connect()
         const form = await Forms.find().sort({ createdAt: -1 }).limit(1)
             return NextResponse.json({form: form[0], success:true})

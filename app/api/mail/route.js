@@ -6,15 +6,15 @@ import connect from "../../../lib/db/connection"
 
 async function sendMail(recipientEmail, pdfBase64) {
   console.log(recipientEmail)
-  // Create a Nodemailer transporter using your email service's credentials
   const transporter = nodemailer.createTransport({
-    service: 'gmail', // e.g., 'gmail', 'yahoo', etc.
+    service: 'gmail', 
     auth: {
       user: process.env.EMAIL_ADDRESS,
       pass: process.env.EMAIL_PASSWORD,
     },
   });
-    // Define the email message
+
+  
   const mailOptions = {
     from: 'testvaxad@gmail.com',
     to: recipientEmail,
@@ -39,45 +39,6 @@ async function sendMail(recipientEmail, pdfBase64) {
   });
 }
 
-// async function htmlToPdf(htmlString) {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-  
-//     // Set the content of the page with your HTML string
-//     await page.setContent(htmlString, { waitUntil: 'networkidle2' });
-  
-//     // Generate PDF from the page
-//     // await page.pdf({ path: outputPath, format: 'A4' });
-//     const pdfBuffer = await page.pdf({ format: 'A4' });
-  
-//     await browser.close();
-//     const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
-//   // Set up the recipient email address
-//    const recipientEmail = "varadprabhu111@gmail.com"
-//     await sendMail(recipientEmail, pdfBase64)
-//   }
-
-  // async function mail(){
-  //   htmlToPdf(htmlString)
-  // }
-  
-export async function POST(req, res) {
-    
-    try {
-        // const response = await runModel('app/api/mail/pyfile/main.py',{})
-        const bodyObject = await req.json()
-        const htmlString = bodyObject.html
-        // console.log(htmlString)
-        htmlToPdf(htmlString)
-        return NextResponse.json({success: true})
-        
-    // console.log(response)
-      
-    } catch (err) {
-        console.log(err)
-        return NextResponse.json({success: false, error: err.message})
-    }
-}
 
 export async function PUT(req, res) {
     
@@ -86,7 +47,6 @@ export async function PUT(req, res) {
       const reports = await Report.find()
       const report = reports[0]
       if(report.createdAt.getMonth()!==(new Date(Date.now())).getMonth()){
-      // if(report.createdAt.getHours()!==(new Date(Date.now())).getHours()){
         report.createdAt = Date.now()
         await report.save()
         return NextResponse.json({send: true})

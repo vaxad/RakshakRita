@@ -56,14 +56,11 @@ export async function PATCH(req, res) {
 }
 
 function getRandomDate(startDate, endDate) {
-    // Convert the dates to timestamps
     const startTimestamp = startDate.getTime();
     const endTimestamp = endDate.getTime();
 
-    // Calculate a random timestamp within the range
     const randomTimestamp = startTimestamp + Math.random() * (endTimestamp - startTimestamp);
 
-    // Convert the timestamp back to a date
     const randomDate = new Date(randomTimestamp);
 
     return randomDate;
@@ -87,8 +84,6 @@ export async function PUT(req, res) {
 
             }
         }
-        // await Feedback.deleteMany({_id:{$in:deleteFeedbacks}})
-        // await Feedback.updateMany({_id:{$in:updateFeedbacks}},{$rename:{"attatchment":"attachment"}})
         return NextResponse.json({ success: true })
 
     } catch (err) {

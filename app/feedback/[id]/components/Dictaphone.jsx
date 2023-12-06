@@ -17,15 +17,6 @@ const Dictaphone = ({setDesc,setLang}) => {
     });
   };
   
-  // useEffect(() => {
-  //   if (finalTranscript !== '') {
-  //     console.log('Got final result:', finalTranscript);
-  //   }
-  // }, [interimTranscript, finalTranscript]);
-
-  // if (!browserSupportsSpeechRecognition) {
-  //   return <span>Browser doesnt support speech recognition.</span>;
-  // }
   useEffect(() => {
     setDesc(transcript)
   }, [transcript])
@@ -64,7 +55,6 @@ const Dictaphone = ({setDesc,setLang}) => {
       <button className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all' onClick={SpeechRecognition.stopListening}>Stop</button>
       <button className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all' onClick={resetTranscript}>Reset</button>
       </div>
-      {/* <p>{transcript}</p> */}
     </div>
   );
 };
