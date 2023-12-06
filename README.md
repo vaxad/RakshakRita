@@ -4,11 +4,11 @@
 
 ---
 
-# Rakshakrita - Empowering Citizen Voices
+# RakshakRita - Empowering Citizen Voices
 
 ## Project Overview
 
-Rakshakrita is a platform designed to empower citizens by providing them with a voice to express their opinions and concerns. It serves as a bridge between the public and law enforcement, ensuring that citizen feedback is not only heard but also acted upon. This README provides an overview of the project, its features, and how users can contribute.
+RakshakRita is a platform designed to empower citizens by providing them with a voice to express their opinions and concerns. It serves as a bridge between the public and law enforcement, ensuring that citizen feedback is not only heard but also acted upon. This README provides an overview of the project, its features, and how users can contribute.
 
 ## How It Works
 
