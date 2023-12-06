@@ -8,7 +8,6 @@ export async function POST(req){
     try {
         const db = await connect()
         const bodyObject = await req.json()
-        //.log(bodyObject)
         const oldAuthority = await Authorities.find({policeId:bodyObject.policeId})
         if(!oldAuthority){
         const authority = await Authorities.create({name:bodyObject.name, email:bodyObject.email, password:bodyObject.password, post:bodyObject.post, state:bodyObject.state, district:bodyObject.district, taluka:bodyObject.taluka, village: bodyObject.village})

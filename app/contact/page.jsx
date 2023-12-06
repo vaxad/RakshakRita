@@ -32,7 +32,7 @@ export default function Page() {
         <h1 className=' text-2xl'>Type</h1>
         <select defaultValue={el.type} onChange={(e)=>{
           setQuestions((prevQuestions) => {
-            const temp = [...prevQuestions]; // Create a copy of the state array
+            const temp = [...prevQuestions]; 
             temp[index].type = e.target.value;
             return temp;
           });      
