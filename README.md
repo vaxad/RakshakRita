@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+12
+![image](https://github.com/vaxad/rakshakrita0/assets/126230095/8a885afc-c2ee-4ced-a97b-d38f09b1edc3)
+
+
+---
+
+# Rakshakrita - Empowering Citizen Voices
+
+## Project Overview
+
+Rakshakrita is a platform designed to empower citizens by providing them with a voice to express their opinions and concerns. It serves as a bridge between the public and law enforcement, ensuring that citizen feedback is not only heard but also acted upon. This README provides an overview of the project, its features, and how users can contribute.
+
+## How It Works
+
+Rakshakrita operates on a simple yet effective process:
+
+1. **Access the Platform**: Users can voice their opinions by scanning the QR code, which redirects them to the official Rakshakrita website.
+
+2. **User Registration and Anonymity**: For first-time users, a unique ID is generated to distinguish between users without compromising anonymity. The user's location is verified within a 100-meter radius of the police station to ensure local relevance.
+
+3. **Multilingual Support**: Rakshakrita supports multiple languages, allowing users to express themselves in the language they are most comfortable with.
+
+4. **User-Friendly Feedback Form**: The feedback form provides a user-friendly experience, offering an array of options. Users fill a mandatory field describing their problem, answer objective questions, and can use speech-to-text or attach media for more detailed feedback.
+
+5. **Machine Learning Analysis**: Feedback elements undergo analysis through a machine learning model, categorizing descriptions as positive or negative. The results are stored in a database for authorities to review and generate reports.
+
+6. **Additional Features**:
+    - Feedback Reports: Users can view reports highlighting the public opinion on different police stations.
+    - Live Heatmaps: Visual representation of the intensity of negative feedback for various localities.
+
+7. **Periodic Reports to Higher Authorities**: Regular reports are sent to higher authorities, providing detailed insights into police stations under their jurisdictions. This aids in identifying and addressing potential issues promptly.
 
 ## Getting Started
 
-First, run the development server:
+To contribute to Rakshakrita, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository: `git clone https://github.com/vaxad/rakshakrita.git`
+2. Install dependencies: `npm install`
+3. Contribute to the codebase.
+4. Submit a pull request.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Additional Information
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+For more details on Rakshakrita, visit our [official website](https://www.rakshakrita.com). Your feedback is crucial in making a positive impact on law enforcement and public safety.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thank you for using Rakshakrita. Your voice shall not go unheard. Together, we make a difference!
