@@ -41,6 +41,6 @@ To contribute to Rakshakrita, follow these steps:
 
 ## Additional Information
 
-For more details on Rakshakrita, visit our [official website]([https://www.rakshakrita.com](https://rakshakrita0.vercel.app/)). Your feedback is crucial in making a positive impact on law enforcement and public safety.
+For more details on Rakshakrita, visit our [official website]([https://rakshakrita0.vercel.app/]). Your feedback is crucial in making a positive impact on law enforcement and public safety.
 
 Thank you for using Rakshakrita. Your voice shall not go unheard. Together, we make a difference!
