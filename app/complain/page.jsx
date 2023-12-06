@@ -1,10 +1,9 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import QrReader from 'react-qr-scanner'
 import Navbar from '../components/Navbar';
-import Link from 'next/link';
 import Loading from '../components/Loading';
 
 export default function Location() {
@@ -33,24 +32,6 @@ export default function Location() {
     console.error(err);
   };
 
-  // useEffect(() => {
-  //   if (window)
-  //     if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(
-  //         (position) => {
-  //           setLatitude(position.coords.latitude);
-  //           setLongitude(position.coords.longitude);
-  //           setc1({ latitude: position.coords.latitude, longitude: position.coords.longitude })
-  //         },
-  //         (err) => {
-  //           setError(err.message);
-  //         }
-  //       );
-  //     } else {
-  //       setError('Geolocation is not supported by your browser.');
-  //     }
-  // }, []);
-
   function areCoordinatesClose(coord1, coord2, threshold) {
     if (!coord1 || !coord2) {
       console.log("no coord")
@@ -58,7 +39,7 @@ export default function Location() {
     }
     const toRadians = (degrees) => (degrees * Math.PI) / 180;
 
-    const R = 6371; // Earth's radius in kilometers
+    const R = 6371; 
 
     const lat1 = toRadians(coord1.latitude);
     const lon1 = toRadians(coord1.longitude);
@@ -74,12 +55,11 @@ export default function Location() {
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c * 1000; // Convert to meters
+    const distance = R * c * 1000; 
 
     return distance < threshold?"true":"false";
   }
 
-  // Example usage:
 
   const threshold = 100; // 100 meters
   const checkCoordinates = (coord2) => {
@@ -92,19 +72,9 @@ export default function Location() {
     <div className=' flex w-full flex-col  home min-h-[100vh] overflow-y-scroll'>
       <Navbar/>
       <div className=' flex flex-col justify-center items-center gap-12 text-slate-950 text-xl font-semibold py-6 px-3'>
-      {/* {latitude && longitude ? (
-        <p>
-          Latitude: {latitude}, Longitude: {longitude}
-        </p>
-      ) : (
-        <p>Loading location...</p>
-      )}
-      {error && <p>Error: {error}</p>} */}
+      
       <h1 className=' text-2xl font-bold text-slate-700 flex flex-row gap-5 items-center'>Scan the QR here 
-      {/* <span className='  text-4xl font-bold text-slate-900 flex flex-row gap-5 items-center'>OR</span>
-      <span>
-      <Link href={"/stations"} className=" px-5 py-2 rounded-xl bg-orange-500 lg:text-3xl text-xl hover:text-slate-50 hover:scale-105 font-bold transition-all">Browse Stations</Link>
-        </span> */}
+      
         </h1>
       <div className=' flex w-full flex-col gap-8 justify-center items-center'>
         <div className=' flex lg:w-1/2 md:w-2/3 w-full relative justify-center items-center'>
@@ -126,7 +96,7 @@ export default function Location() {
         </div>
         <h1 className=' text-xl text-center font-semibold text-slate-700'><span className=' text-slate-800'>Note:</span> You need to be within 100 metre radius of the police station about which you want to complain!</h1>
         {result && <Loading/>}
-        {/* <p>{areClose?areClose!=="true"?`You should be under 100m radius of `:"":""}</p> */}
+       
       </div>
       </div>
     </div>

@@ -74,14 +74,10 @@ export default function Navbar() {
                         <option value={"gu"}><p>Gujarati</p></option>
                         <option value={"hi"}><p>Hindi</p></option>
                     </select>
-                    {/* <div onClick={()=>{changeLang()}} className="language txtOrange cursor-pointer  hover:text-orange-600"><span>ENGLISH</span><div className=" dropdown"></div></div> */}
                     <svg onClick={() => { setnav(true) }} xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all lg:hidden block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
                         <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
                     </svg>
-                    {/* <div className="log-sign-div">
-                    <button className="log-sign-button login bgOrange"> Login </button>
-                    <button className="log-sign-button signup bgOrange"> Signup </button>
-                </div> */}
+                    
                     <svg onClick={() => { setnav2(true) }} xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all hidden lg:block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
                         <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
                     </svg>
@@ -98,8 +94,7 @@ export default function Navbar() {
                 <div><Link href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
                 <div><Link href="/working" className="navLinks transition-all">How it works</Link></div>
                 <div><Link href="/about" className="navLinks transition-all">About us</Link></div>
-                {/* <div><Link href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
-            </div>
+             </div>
 
             <div className={`flex-col justify-center gap-12 bg-[#454545] min-h-[100vh] fixed  top-0 right-0 ${nav ? " translate-y-0" : " -translate-y-full"} transition-all items-center lg:hidden flex w-full text-slate-100 z-50 `} style={{ transitionDuration: "1000ms", transitionDelay: "200ms" }}>
                 <div onClick={() => { setnav(false) }} className=" absolute top-5 right-5 transition-all"><svg xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all lg:hidden block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
@@ -108,10 +103,8 @@ export default function Navbar() {
                 <div><Link onClick={() => { setnav(false) }} href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
                 <div><Link onClick={() => { setnav(false) }} href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
                 <div><Link onClick={() => { setnav(false) }} href="/working" className="navLinks transition-all">How it works</Link></div>
-                {/* <div><Link onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</Link></div> */}
                 <div><Link onClick={() => { setnav(false) }} href="/about" className="navLinks transition-all">About us</Link></div>
-                {/* <div><Link onClick={()=>{setnav(false)}} href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
-            </div>
+             </div>
 
             <div className={`flex-col justify-center gap-12 bg-[#454545] min-h-[100vh] fixed top-0 right-0 ${nav2 ? " translate-x-0" : " translate-x-full"} transition-all items-center hidden lg:flex w-fit px-24 text-slate-100 z-40 `} style={{ transitionDuration: "1000ms", transitionDelay: "200ms" }}>
                 <div onClick={() => { setnav2(false) }} className=" absolute top-12 right-12 transition-all"><svg xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all hidden lg:block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
@@ -120,10 +113,8 @@ export default function Navbar() {
                 <div><Link onClick={() => { setnav2(false) }} href="/complain" className="navLinks transition-all">Submit a feedback</Link></div>
                 <div><Link onClick={() => { setnav2(false) }} href="/stations" className="navLinks transition-all">Police stations near You</Link></div>
                 <div><Link onClick={() => { setnav2(false) }} href="/working" className="navLinks transition-all">How it works</Link></div>
-                {/* <div><Link onClick={()=>{setnav(false)}} href="" className="navLinks transition-all">Feedback history</Link></div> */}
                 <div><Link onClick={() => { setnav2(false) }} href="/about" className="navLinks transition-all">About us</Link></div>
-                {/* <div><Link onClick={()=>{setnav2(false)}} href="/contact" className="navLinks transition-all">Contact us</Link></div> */}
-            </div>
+                </div>
         </div>
     )
 }

@@ -12,8 +12,6 @@ export default function SendMail() {
                 console.log("Mail sending")
                 const htmlData = (await axios.post("https://rakshakrita-api-v2.onrender.com/mail")).data
                 const html = htmlData.html.join(" ")
-                // const html = "<html></html>"
-                // console.log(html)
                 const resp = (await fetch("https://rakshakrita-api.onrender.com/mail", { 
                     method: 'POST', 
                     headers: { 'Content-Type': 'application/json' },
