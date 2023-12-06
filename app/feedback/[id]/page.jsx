@@ -7,12 +7,9 @@ import Navbar from "../../components/Navbar"
 import { redirect, useRouter } from "next/navigation";
 import Loading from "../../components/Loading";
 import L from 'leaflet';
-// import { AudioRecorder } from 'react-audio-voice-recorder';
 import Field from "./components/Field";
 import Dictaphone from "./components/Dictaphone";
-// import translate from "translate";
-// const { translate } = require('free-translate');
-// import translate from "translate-google"
+
 
 export default function Page({ params: { id } }) {
   const [station, setStation] = useState(null)
@@ -28,7 +25,7 @@ export default function Page({ params: { id } }) {
   const imageUpload = useRef(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const cloud_name = "db670bhmc"
+  const cloud_name = process.env.CLOUDINARY_LINK
   const [address, setAddress] = useState(null);
   const route = useRouter();
   const [extra, setextra] = useState(null)
@@ -38,12 +35,11 @@ export default function Page({ params: { id } }) {
   useEffect(() => {
     try {
       const getInitialData = async () => {
-        // const res = await fetch(`https://ipapi.co/json/`);
-        // const data = await res.json();
+        
         const res = await fetch("/api/authority/form")
         const data = await res.json()
         setextra(data.form)
-        // setAddress(data);
+        
       };
       getInitialData();
     } catch (error) {
@@ -63,7 +59,7 @@ export default function Page({ params: { id } }) {
     const data = await res.json()
     setStation(data.station)
     setLoading(false)
-    // console.log(data)
+    
   }
   useEffect(() => {
     getData()
@@ -75,12 +71,10 @@ export default function Page({ params: { id } }) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            // 23.133735, 72.632947
+            
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
-            // setLatitude(23.133735);
-            // setLongitude(72.632947);
-            // return ({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+            
           },
           (err) => {
             alert(err.message);
@@ -101,7 +95,7 @@ export default function Page({ params: { id } }) {
     }
     const toRadians = (degrees) => (degrees * Math.PI) / 180;
 
-    const R = 6371; // Earth's radius in kilometers
+    const R = 6371; 
 
     const lat1 = toRadians(coord1.latitude);
     const lon1 = toRadians(coord1.longitude);
@@ -117,15 +111,15 @@ export default function Page({ params: { id } }) {
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c * 1000; // Convert to meters
+    const distance = R * c * 1000; 
 
     return distance < threshold;
   }
 
   const checkProximity = () => {
     const c1 = { latitude: station.latitude, longitude: station.longitude }
-    // const latitude = 21.170240     //temp
-    // const longitude = 72.831062    //temp 
+    
+    
     const c2 = { latitude: latitude, longitude: longitude }
     if (!c2.latitude || !c2.longitude)
       return false
@@ -151,51 +145,31 @@ export default function Page({ params: { id } }) {
       return
     } else {
       let translatedDesc = desc
-    // const translatedDesc = await translate(desc, { from: lang, to: 'en' })
-  //   translate('I speak Chinese!', {from: 'en', to: 'zh-cn'}).then(res => {
-  //     console.log(res)
-  //     translatedDesc = res
-  // }).catch(err => {
-  //     console.error(err)
-  // })
+  
     console.log(translatedDesc)
-      // const response = await axios.post("https://rakshakrita-api.onrender.com/type", { "text": sub + ": " + desc })
-      // const typeData = await response.data
-      // console.log(typeData)
-      // const response2 = await axios.post("https://rakshakrita-api.onrender.com/issue", { "text": sub + ": " + desc })
-      // const issueData = await response2.data
-      // console.log(issueData)
+      
       if (!!file) {
         try {
+          const upload_preset = process.env.CLOUDINARY_PRESET
           const formData = new FormData();
           formData.append('file', file);
-          formData.append('upload_preset', 'gcdc_test');
+          formData.append('upload_preset', upload_preset);
           const response = await axios.post(
             `https://api.cloudinary.com/v1_1/${cloud_name}/upload`,
             formData
           );
           console.log(response)
-          //.log(response.statusText);
+          
           if (response.statusText === "OK") {
-            // console.log(response.data.url)
-            // setAttatch(response.data.url)
-            // const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, attatchment: response.data.url, ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
-            // if (resp.message) {
-            //   alert(resp.message)
-            // } else {
-            //   setDesc("")
-            //   setimg(null)
-            //   setFile(null)
-            // }
-            // console.log(resp)
+            
             let savedId = localStorage.getItem("id")
             if(!savedId){
               const idData = (await axios.get("/api/user")).data
               savedId = idData.user._id
             }
             console.log(JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
-            // const resp = await axios.post("http://localhost:5000/feedback", JSON.stringify({ description: translatedDesc, attachment: response.data.url, id: savedId, stationId: station._id, from:lang}))
-            //https://rakshakrita-api-v2.onrender.com/feedback
+            
+            
             const resp = fetch("https://rakshakrita-api-v2.onrender.com/feedback", {
               method: "POST",
               headers :{
@@ -211,30 +185,14 @@ export default function Page({ params: { id } }) {
           console.error('Error uploading file to Cloudinary:', error);
         }
       } else {
-        // const resp = (await axios.post("/api/feedback", JSON.stringify({ description: desc, subject: sub, attatchment: "", ip: address?.ip, stationId: station._id, type: typeData.type, issue: issueData.issue[0] }))).data
-        // console.log(resp)
-        // if (resp.message) {
-        //   alert(resp.message)
-        // } else {
-        //   setSub("")
-        //   setDesc("")
-        //   setimg(null)
-        //   setFile(null)
-        //   route.push("/stations")
-        // }
-        let savedId = localStorage.getItem("id")
+        
+    let savedId = localStorage.getItem("id")
             if(!savedId){
               const idData = (await axios.get("/api/user")).data
               savedId = idData.user._id
             }
             console.log(JSON.stringify({ description: translatedDesc, attachment: "", id: savedId, stationId: station._id, from:lang}))
-            // const resp =  fetch("http://localhost:5000/feedback", {
-            //   method: "POST",
-            //   headers :{
-            //     "Content-Type": "application/json"
-            //   },
-            //   body: JSON.stringify({ description: translatedDesc?translatedDesc:desc, attachment: "", id: savedId, stationId: station._id,from:lang})
-            // })
+            
             const resp =  fetch("https://rakshakrita-api-v2.onrender.com/feedback", {
               method: "POST",
               headers :{
@@ -258,13 +216,13 @@ export default function Page({ params: { id } }) {
     }
     console.log("hello")
     const start = [parseFloat(station.latitude), parseFloat(station.longitude)]
-    // const latitude = 21.170240     //temp
-    // const longitude = 72.831062    //temp
+    
+    
     const end = [parseFloat(latitude), parseFloat(longitude)]
     var map = L.map('map').setView(start, 50);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      
     }).addTo(map);
     var circle = L.circle(start, {
       color: 'green',
@@ -274,16 +232,16 @@ export default function Page({ params: { id } }) {
   }).addTo(map);
   var customIcon = L.icon({
     iconUrl: '/police-station.png',
-    iconSize: [32, 32], // set the size of the icon
-    iconAnchor: [16, 32], // set the anchor point
-    popupAnchor: [0, -32], // set the popup anchor
+    iconSize: [32, 32], 
+    iconAnchor: [16, 32], 
+    popupAnchor: [0, -32], 
   });
 
   var customIcon2 = L.icon({
     iconUrl: '/location.png',
-    iconSize: [32, 32], // set the size of the icon
-    iconAnchor: [16, 32], // set the anchor point
-    popupAnchor: [0, -32], // set the popup anchor
+    iconSize: [32, 32], 
+    iconAnchor: [16, 32], 
+    popupAnchor: [0, -32], 
   });
     L.marker(start,{ icon: customIcon }).addTo(map);
     L.marker(end, { icon: customIcon2 }).addTo(map);
@@ -302,13 +260,6 @@ export default function Page({ params: { id } }) {
 
       }
       setMap()
-      // console.log("hello")
-      // var map = L.map('map').setView([parseFloat(station.latitude), parseFloat(station.longitude)], 50);
-      // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //   maxZoom: 19,
-      //   // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      // }).addTo(map);
-      // L.marker([parseFloat(station.latitude), parseFloat(station.longitude)]).addTo(map);
 
     }
   }, [station, latitude])
@@ -321,9 +272,9 @@ export default function Page({ params: { id } }) {
     navigator.mediaDevices
       .getUserMedia({ video: false, audio: true })
       .then((stream) => {
-        window.localStream = stream; // A
-        window.localAudio.srcObject = stream; // B
-        window.localAudio.autoplay = true; // C
+        window.localStream = stream; 
+        window.localAudio.srcObject = stream; 
+        window.localAudio.autoplay = true; 
       })
       .catch((err) => {
         console.error(`you got an error: ${err}`);

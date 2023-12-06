@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server"
-// import {PythonShell} from 'python-shell';
-// import puppeteer from 'puppeteer';
 import nodemailer from 'nodemailer';
 import Report from "../../../lib/db/models/Reports";
 import connect from "../../../lib/db/connection"
 
-// const runModel = async (file,options)=>{
-//     const response = await PythonShell.run(file,options);
-//     return response;
-// }
 
 async function sendMail(recipientEmail, pdfBase64) {
   console.log(recipientEmail)
@@ -16,8 +10,8 @@ async function sendMail(recipientEmail, pdfBase64) {
   const transporter = nodemailer.createTransport({
     service: 'gmail', // e.g., 'gmail', 'yahoo', etc.
     auth: {
-      user: 'testvaxad@gmail.com',
-      pass: 'atxb zxxo tbvs sbwp',
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
     // Define the email message
