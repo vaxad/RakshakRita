@@ -26396,13 +26396,6 @@ function generateQRCode(data) {
     const qrCodeData = `https://rakshakrita0.vercel.app/feedback/${id}` // Convert the field to QR code
     const fileName = `${outputDirectory}${id}.png`;
 
-    // qr.toFile(fileName, qrCodeData, (err) => {
-    //   if (err) {
-    //     console.error(err);
-    //   } else {
-    //     console.log(`QR code saved as ${fileName}`);
-    //   }
-    // });
     qr.toDataURL(qrCodeData, async (err, url) => {
       if (err) {
           console.error(err);

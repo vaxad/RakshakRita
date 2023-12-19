@@ -55,8 +55,8 @@ export default function Home() {
 
         </div>
         <div className=" flex flex-col gap2 py-6 w-full justify-center h-full  items-center ">
-          <h1 id="rakshak" className=" text-2xl text-center font-bold">તમારો પ્રતિસાદ આવે તમારી ભાષામાં!</h1>
-          <h1 id="rakshak" className=" text-2xl text-center font-bold">સુરક્ષાનો સાજ, ગુજરાતની આવાજ!</h1>
+          <h1 id="rakshak" className=" text-2xl text-center font-bold">अपनी प्रतिक्रिया अपनी भाषा में प्राप्त करें!</h1>
+          <h1 id="rakshak" className=" text-2xl text-center font-bold">सुरक्षा, राजस्थान की आवाज़!</h1>
         </div>
       </div>
 

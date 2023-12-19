@@ -31,34 +31,34 @@ export default function Page() {
       college: "DJSCE COMPS",
       img: "/rudra.jpeg"
     },
-    {
-      name: "Taran Shah",
-      title: "Lead Orator & ML Subordinate",
-      url: "https://www.linkedin.com/in/taran-shah-78b9a2226/",
-      college: "DJSCE COMPS",
-      img: "/taran.jpeg"
-    },
-    {
-      name: "Shubham Jaiswar",
-      title: "ML Subordinate",
-      url: "https://www.linkedin.com/in/shubhamjaiswar/",
-      college: "DJSCE COMPS",
-      img: "/shubham.jpeg"
-    },
-    {
-      name: "Milind Pithadia",
-      title: "Design Lead & Web Subordinate",
-      url: "https://www.linkedin.com/in/milind-pithadia-66a129295/",
-      college: "DJSCE IT",
-      img: "/milind.jpg"
-    },
-    {
-      name: "Varun Tank",
-      title: "Research Lead & Subordinate Orator",
-      url: "mailto:varuntank2019@gmail.com",
-      college: "DJSCE COMPS",
-      img: "/varun.jpeg"
-    }
+    // {
+    //   name: "Taran Shah",
+    //   title: "Lead Orator & ML Subordinate",
+    //   url: "https://www.linkedin.com/in/taran-shah-78b9a2226/",
+    //   college: "DJSCE COMPS",
+    //   img: "/taran.jpeg"
+    // },
+    // {
+    //   name: "Shubham Jaiswar",
+    //   title: "ML Subordinate",
+    //   url: "https://www.linkedin.com/in/shubhamjaiswar/",
+    //   college: "DJSCE COMPS",
+    //   img: "/shubham.jpeg"
+    // },
+    // {
+    //   name: "Milind Pithadia",
+    //   title: "Design Lead & Web Subordinate",
+    //   url: "https://www.linkedin.com/in/milind-pithadia-66a129295/",
+    //   college: "DJSCE IT",
+    //   img: "/milind.jpg"
+    // },
+    // {
+    //   name: "Varun Tank",
+    //   title: "Research Lead & Subordinate Orator",
+    //   url: "mailto:varuntank2019@gmail.com",
+    //   college: "DJSCE COMPS",
+    //   img: "/varun.jpeg"
+    // }
   ]
   return (
     <div className='w-full outline-white-900 overflow-y-scroll  min-h-screen '>
@@ -88,7 +88,7 @@ export default function Page() {
 <path d="M67.0815 23.7889L67.0879 23.7928C71.7779 26.7124 75.5535 31.0457 78.3776 36.9187L78.3825 36.9286C81.2081 42.7386 82.6818 49.9943 82.6818 58.7955C82.6818 67.5966 81.2081 74.8523 78.3824 80.6623L78.3776 80.6723C75.5535 86.5453 71.7779 90.8785 67.0879 93.7981L67.0816 93.802C62.3865 96.7443 57.1236 98.2273 51.2273 98.2273C45.3325 98.2273 40.0509 96.745 35.3191 93.8003C30.6614 90.8807 26.8829 86.5452 24.0232 80.6669C21.2297 74.855 19.7727 67.5974 19.7727 58.7955C19.7727 49.9933 21.2298 42.7355 24.0234 36.9236C26.8831 31.0455 30.6615 26.7101 35.3191 23.7906C40.0509 20.8459 45.3325 19.3636 51.2273 19.3636C57.1236 19.3636 62.3865 20.8466 67.0815 23.7889ZM93.7114 88.5423C97.906 80.0814 99.9545 70.1392 99.9545 58.7955C99.9545 47.4517 97.906 37.5096 93.7114 29.0487C89.5377 20.6299 83.7672 14.0594 76.3856 9.4278C68.998 4.79247 60.5862 2.5 51.2273 2.5C41.8683 2.5 33.4565 4.79247 26.069 9.4278C18.6874 14.0594 12.9168 20.6299 8.7431 29.0487C4.54851 37.5096 2.5 47.4517 2.5 58.7955C2.5 70.1392 4.54851 80.0814 8.7431 88.5423C12.9168 96.961 18.6874 103.532 26.069 108.163C33.4565 112.798 41.8683 115.091 51.2273 115.091C60.5862 115.091 68.998 112.798 76.3856 108.163C83.7672 103.532 89.5377 96.961 93.7114 88.5423Z" stroke="#3e77b6" stroke-width="5"/>
 </svg>
     </h1>
-      <div className=" w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 pb-12  px-12 flex-wrap gap-8 min-h-screen items-center justify-center">
+      <div className=" w-full grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 pb-12  px-12 flex-wrap gap-8 min-h-screen items-start justify-center">
         {members.map((member, index) => (
           <ArcCard key={index} name={member.name} title={member.title} url={member.url} college={member.college} img={member.img} />
         ))}

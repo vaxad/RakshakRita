@@ -16,7 +16,7 @@ export async function POST(req,res) {
         
         
             const bodyObject = await req.json()
-            const feedbacks = await Feedback.find({ stationId: bodyObject.stationId })
+            const feedbacks = await Feedback.find({ stationId: bodyObject.stationId.toString() })
             return NextResponse.json({ feedbacks: feedbacks })
         
         

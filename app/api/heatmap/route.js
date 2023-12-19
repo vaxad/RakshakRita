@@ -8,12 +8,17 @@ export async function POST(req, res) {
         const body = await req.json()
         for (const item of body.heatmapData) {
             console.log(item)
+            let ctr=1;
             const hmOld = await Heatmap.findOne({latitude:item[0],longitude:item[1]})
             if(hmOld){
-                hmOld.intensity = item[2]
-                await hmOld.save()
+                // hmOld.intensity = item[2]
+                // await hmOld.save()
+                console.log(ctr)
+                ctr++
+                continue
             }else{
                 const hm = await Heatmap.create({latitude:item[0],longitude:item[1],intensity:item[2]})
+                console.log(hm)
             }
         }
         
