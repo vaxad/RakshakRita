@@ -50,13 +50,13 @@ export default function Stations() {
     // const latitude = 21.170240     //temp
     // const longitude = 72.831062    //temp
     var marker = L.marker([latitude, longitude], { icon: customIcon2 }).addTo(map).bindPopup("You are here");
-      
+    markers.push(marker);
     // Extract keys from the first object to determine the order
     let keys = Object.keys(heatmap[0]).filter(key => key === 'latitude' || key === 'longitude' || key === 'intensity');
 
     // Convert array of objects to array of arrays
     let heatmapData = heatmap.map(obj => keys.map(key => obj[key]));
-    //.log(heatmapData)
+    console.log(heatmapData)
     try{
     var heat = L.heatLayer(heatmapData, {
       minOpacity: 0.3,
@@ -120,14 +120,15 @@ export default function Stations() {
       setshowstations(filteredStations)
       const heatmapres = (await axios.get("/api/heatmap")).data
       setheatmap(heatmapres.heatmapData)
-      const resp2 = (await axios.post("https://rakshakrita-api-v2.onrender.com/heatmap")).data
+      console.log(heatmapres.heatmapData)
+      const resp2 = (await axios.post("http://localhost:5000/heatmap/")).data
       console.log(resp2)
       // setheatmap(JSON.parse(resp2.heatmapData))
       const arr =[]
       //.log((JSON.parse(resp2.heatmapData)).length)
       for(const el of JSON.parse(resp2.heatmapData)){
         const element = []
-        const res = stns.filter(stn=>stn._id===el.stationId)[0]
+        const res = stns.find(stn=>stn._id.$oid===el.stationId)
         console.log(res)
         if(res){
         element.push(parseFloat(res.latitude))
@@ -142,8 +143,6 @@ export default function Stations() {
         method: "POST",
         body:JSON.stringify({heatmapData:arr})
       })
-      //.log(arr)
-      // //.log(arr)
     }
     if(latitude && longitude)
     getData();
@@ -282,7 +281,7 @@ export default function Stations() {
             (<div className=" col-span-3 w-full max-h-[50vh] "><Loading /></div>) :
               showstations.map((el) => {
                 return (
-                  <StationCard key={el._id} el={el} />
+                  <StationCard key={el._id.$oid} el={el} />
                 )
               })}
         </div>

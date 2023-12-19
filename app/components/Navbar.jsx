@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className="flex flex-col gap-5 py-6  bg-opacity-60 bg-slate-950 w-full max-w-[100vw] rounded-b-2xl ">
             <div className=" flex flex-row justify-between items-center lg:px-16 px-5 w-full z-20">
                 <Link href={"/"} className="logo cursor-pointer">
-                    <h1 id='rakshak' className="txtOrange font-bold lg:text-4xl text-2xl">Rakshakરીત</h1>
+                    <h1 id='rakshak' className="txtOrange font-bold lg:text-4xl text-2xl">Rakshakरीत</h1>
                     <p className="subtitle lg:flex hidden">Your Voice, Our Commitment</p>
                 </Link>
 
@@ -71,7 +71,7 @@ export default function Navbar() {
                 <div className=" flex flex-row justify-center items-center gap-4">
                     <select value={language} onChange={(e) => {setLanguage(e.target.value); console.log(e.target.value) }} className="language txtOrange cursor-pointer  hover:text-orange-600 bg-transparent border-none ring-0 focus:border-none">
                         <option value={"en"}><p>English</p></option>
-                        <option value={"gu"}><p>Gujarati</p></option>
+                        {/* <option value={"gu"}><p>Gujarati</p></option> */}
                         <option value={"hi"}><p>Hindi</p></option>
                     </select>
                     <svg onClick={() => { setnav(true) }} xmlns="http://www.w3.org/2000/svg" className=' text-[#FF9400] hover:text-orange-600 transition-all lg:hidden block' fill='currentColor' x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">

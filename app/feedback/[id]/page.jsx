@@ -6,7 +6,7 @@ import "./feedback.css"
 import Navbar from "../../components/Navbar"
 import { redirect, useRouter } from "next/navigation";
 import Loading from "../../components/Loading";
-import L from 'leaflet';
+import * as L from 'leaflet';
 import Field from "./components/Field";
 import Dictaphone from "./components/Dictaphone";
 
@@ -32,39 +32,22 @@ export default function Page({ params: { id } }) {
 
   const router = useRouter()
 
-  useEffect(() => {
-    try {
-      const getInitialData = async () => {
-        
-        const res = await fetch("/api/authority/form")
-        const data = await res.json()
-        setextra(data.form)
-        
-      };
-      getInitialData();
-    } catch (error) {
-      console.trace(error);
-    }
-  }, []);
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setimg(URL.createObjectURL(e.target.files[0]));
   };
 
   const getData = async () => {
+    console.log(id)
     const res = await fetch(`/api/station/${id}`, {
       method: "GET",
     });
     const data = await res.json()
+    console.log(data)
     setStation(data.station)
     setLoading(false)
     
   }
-  useEffect(() => {
-    getData()
-    getUserLocation()
-  }, [])
 
   const getUserLocation = () => {
     if (window)
@@ -85,7 +68,27 @@ export default function Page({ params: { id } }) {
         alert('Geolocation is not supported by your browser.');
         router.push("/")
       }
+      console.log(latitude,longitude)
   }
+
+  
+  useEffect(() => {
+    try {
+      const getInitialData = async () => {
+        
+        const res = await fetch("/api/authority/form")
+        const data = await res.json()
+        setextra(data.form)
+        
+      };
+      console.log("starting useeff")
+      getInitialData(); 
+      getData()
+      getUserLocation()
+    } catch (error) {
+      console.trace(error);
+    }
+  }, []);
 
   const [lang, setlang] = useState("en")
   function areCoordinatesClose(coord1, coord2, threshold) {

@@ -38,10 +38,10 @@ const Dictaphone = ({setDesc,setLang}) => {
             setlang("hi")
             setuse(true)
         }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Hindi</button>
-        <button onClick={()=>{
-            setlang("gu")
+        {/* <button onClick={()=>{
+            setlang("mwr")
             setuse(true)
-        }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Gujarati</button>
+        }} className=' py-1 px-3 bg-slate-100 border-2 border-slate-100 text-orange-600 hover:text-slate-100 hover:bg-orange-600 rounded-2xl transition-all'>Marwari</button> */}
         <button onClick={()=>{
             setlang("en")
             setuse(true)
